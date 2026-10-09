@@ -597,6 +597,66 @@ mathematical objects and conditions.
   retains the fixed model's foundational obligations.
 \end{proposition}
 
+\begin{proposition}[One conditional CW cofiber on the fixed model]
+  \label{prop:lin-cw-fixed-cofiber}
+  \lean{KIP126.Interface.Solution.LinProgram.NaturalityCW.ExtensionPackage,KIP126.Interface.Solution.LinProgram.NaturalityCW.exists_extensionPackage,KIP126.Interface.Solution.LinProgram.NaturalityCW.extension,KIP126.Interface.Solution.LinProgram.NaturalityCW.extension_spec,KIP126.Interface.Solution.LinProgram.NaturalityCW.CW,KIP126.Interface.Solution.LinProgram.NaturalityCW.q,KIP126.Interface.Solution.LinProgram.NaturalityCW.fixed_triangles}
+  \uses{prop:cofiber-extension-octahedron,def:stage-zero-cooperation-contract,def:computation-fixed-bindings}
+  \notready
+  Use the fixed route's same maps $\eta:S^1\to S^0$ and
+  $\nu:S^3\to S^0$, and the same $C\eta$ as in naturality replay.
+  The explicit premise $\nu\circ\Sigma^3\eta=0$ supplies an extension
+  $g:\Sigma^3C\eta\to S^0$ restricting to $\nu$.
+  Choose this extension once and define $W=C(g)$ using the selected
+  cofiber construction of that foundation. The map
+  $q:W\to\Sigma^4C\eta$ is precisely $\delta_g$ followed by the specified
+  shift-composition isomorphism.
+  For this same $g$ and $W$, one octahedron provides the distinguished
+  triangles $S^0\to W\xrightarrow q\Sigma^4C\eta$ and
+  $C\nu\to W\to S^6$, together with all four comparison squares.
+  Their connecting arrows retain the proved suspension signs.
+
+  The fixed foundation's existing tensor input supplies its octahedron
+  instance. Its foundational proof remains unfinished. This construction
+  does not prove the composite-zero premise or identify the selected
+  $W$ with the pinned native \texttt{CW\_nu\_eta} module.
+\end{proposition}
+
+\begin{proposition}[Conditional replay from the CW record to the sphere]
+  \label{prop:lin-native-naturality-cw-462481}
+  \lean{KIP126.Computation.LinProofs.Raw.NaturalityHighStem.source462479Full,KIP126.Computation.LinProofs.Raw.NaturalityHighStem.cwMapSuspension,KIP126.Computation.LinProofs.Raw.NaturalityHighStem.native_cw_degree_shift}
+  \lean{KIP126.Interface.Solution.LinProgram.NaturalityCW.toQuadCeta,KIP126.Interface.Solution.LinProgram.NaturalityCW.cetaDesuspendFour,KIP126.Interface.Solution.LinProgram.NaturalityCW.cetaDesuspendFour_hasDifferential,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwSequence,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwToCetaE2,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwToCetaE2_hasDifferential,KIP126.Interface.Solution.LinProgram.NaturalityCW.CWCoordinates,KIP126.Interface.Solution.LinProgram.NaturalityCW.SourceEquation,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462480,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462481_from_cw}
+  \uses{prop:lin-cw-fixed-cofiber,prop:lin-ceta-tower-suspension,lem:adams-four-suspension-differential,prop:internal-page-naturality,prop:lin-native-naturality-462481,def:lin-map-catalogue}
+  \notready
+  Reassociate the target of the same actual $q$ by
+  $\widetilde q=\kappa_4^{-1}\circ q$. Its induced second-page map,
+  followed by the four constructed quotient desuspensions, defines an
+  actual linear map $F:E_2(W)\to E_2(C\eta)$ lowering the internal
+  degree by four. Naturality and fourfold desuspension transport the
+  complete differential relation along $F$ for all integer pages and
+  bidegrees.
+
+  The source premise is exactly the actual equation recorded by
+  $D462479$: $d_3[1]=[0]$ from $(15,144)$ to $(18,146)$ on this same $W$.
+  Here $[0]$ denotes the native basis index zero, not the zero vector.
+  Two endpoint equations identify the images under the actual $F$ with
+  the interpreted $C\eta$ coordinates $[1]$ at $(15,140)$ and $[0]$ at
+  $(18,142)$. They give precisely the source equation of $N462480$.
+  These are equalities for the defined composite map; no intermediate
+  representative relation is silently assumed or decided.
+
+  Compose with the existing $C\eta$-to-sphere replay, retaining its four
+  sphere desuspension-coordinate comparisons, its fixed sphere tower
+  choices, and one presentation $P$. This yields the exact native
+  $N462481$ statement $d_3[2]=[2]$ from $(15,138)$ to $(18,140)$.
+  The explicit remaining obligations are the actual zero composite,
+  the actual CW source differential, the two CW endpoint comparisons,
+  and the four sphere comparisons. Identification of both interpreted
+  coordinate families with their full pinned native modules, and the
+  fixed foundation's proof obligations, remain separate.
+  No native $D$ or $N$ tag, trial record, total computation result, or
+  auxiliary-spectrum declaration discharges these obligations.
+\end{proposition}
+
 \begin{lemma}[Sphere quotient reductions in the high-stem naturality context]
   \label{lem:lin-high-stem-native-products}
   \lean{KIP126.LinE2.NaturalityHighStemProducts.map_relation_mem,KIP126.LinE2.NaturalityHighStemProducts.h0_relation_mem,KIP126.LinE2.NaturalityHighStemProducts.ancestor_relation_mem,KIP126.LinE2.NaturalityHighStemProducts.native_map_column0,KIP126.LinE2.NaturalityHighStemProducts.native_h0_product_zero,KIP126.LinE2.NaturalityHighStemProducts.native_ancestor_product}

@@ -273,7 +273,7 @@ lake build KIP126.Checks.StableHomotopy.CofiberExtension
 
 这个里程碑服务于固定原生日志 462479 的 CW 源对象，以及 462480 所用 `CW_nu_eta__Ceta` 的 shift-four 映射。它只解决条件构造与三角比较，未给出这两条实际微分或原生模块的识别。同一固定 foundation 的八面体实例已有 `Foundation.TensorInput.triangulated`，可从 `Def.StageInput.witness.tensorInput` 取得，独立核验通过；无需增加 Challenge2 字段或换一个 foundation。该实例仍继承原基础未完成证明。
 
-新构造已独立 Lean 核验，只依赖标准逻辑三项；正式公理/导入检查通过（1561 jobs），根库构建通过（4886 jobs）。Blueprint web、完整声明检查、活动依赖解析、18项布局检查及来源/接口静态审计均通过。两条旧延拓定理的完整类型与上一提交逐字一致，新增量词与符号也经独立复核。准确剩余内容是实际复合零、固定原生模块与选定 `C(g)` 的比较，以及上述实际商映射在所用坐标上的等式。现 route 的 `ClassicalObject` 悬移比较覆盖 sphere/Cν/detector 及其 shifts。下述新构造已从同一 foundation 取得 Cη 及任意整数悬移的实际 `TowerComparison`；CW→Cη 的四次降悬组合、原生坐标比较和来源微分仍须落实。没有新增源假设、Challenge2 字段或替代模型来掩盖这些义务。
+新构造已独立 Lean 核验，只依赖标准逻辑三项；正式公理/导入检查通过（1561 jobs），根库构建通过（4886 jobs）。Blueprint web、完整声明检查、活动依赖解析、18项布局检查及来源/接口静态审计均通过。两条旧延拓定理的完整类型与上一提交逐字一致，新增量词与符号也经独立复核。准确剩余内容是实际复合零、固定原生模块与选定 `C(g)` 的比较，以及上述实际商映射在所用坐标上的等式。现 route 的 `ClassicalObject` 悬移比较覆盖 sphere/Cν/detector 及其 shifts。下述新构造已从同一 foundation 取得 Cη 及任意整数悬移的实际 `TowerComparison`；CW→Cη 的四次降悬组合已在下文闭合；实际复合零、原生坐标比较和来源微分仍须落实。没有新增源假设、Challenge2 字段或替代模型来掩盖这些义务。
 
 ## 从同一 foundation 构造 Cη 悬移比较
 
@@ -283,7 +283,7 @@ lake build KIP126.Checks.StableHomotopy.CofiberExtension
 
 `Interface.Solution.LinProgram.Naturality.cetaTowerComparison` 以及 `cetaShiftTowerComparison n` 已在原有实际 Cη 上实例化，其中 n 是任意整数。二者同时从同一个 `Def.StageInput.witness.tensorInput` 取得 tensor 和 unit 的实例。原 route 的两份 sphere 比较保留；六个原自然性公开定理的完整类型逐字不变，没有新增 Challenge2 字段或另选模型。
 
-这个里程碑服务于固定日志 462479→462480 的 `CW_nu_eta__Ceta`（shift four），以及其后 462481 的 Cη→sphere 自然性链。它解决塔比较的构造，尚未证明不同三角补全选择的独立性、实际 ην 复合为零、CW/Cη 原生模块的比较或实际来源微分。四次降悬的组合与全部原生坐标等式也仍待接入；不能据此标记 462480/462481 为实际认证。
+这个里程碑服务于固定日志 462479→462480 的 `CW_nu_eta__Ceta`（shift four），以及其后 462481 的 Cη→sphere 自然性链。它解决塔比较的构造，尚未证明不同三角补全选择的独立性、实际 ην 复合为零、CW/Cη 原生模块的比较或实际来源微分。下文已构造四次降悬组合；全部原生坐标等式仍待证明，不能据此标记 462480/462481 为实际认证。
 
 ```sh
 lake build KIP126.Checks.ClassicalAdams.SuspensionConstruction \
@@ -292,6 +292,36 @@ lake build KIP126.Checks.ClassicalAdams.SuspensionConstruction \
 ```
 
 通用构造及其全整数、符号和导入审计已独立核验，公理仅标准逻辑三项。含固定 Cη 实例的正式构建通过（3498 jobs）；固定实例继承原有基础 `sorryAx`，未扩大基础公理集合。固定 Blueprint 节点继续为 `notready`；通用条件构造为 `leanok`。根库和新旧自然性检查通过（4891 jobs）；Blueprint web、完整声明链接、活动标签/依赖解析、18 项边界布局检查及来源/接口静态和 Lean 检查均通过。独立复核确认负号、全整数范围及同一单位结构没有改变；六个原自然性定理的公开类型与上一提交逐字一致。
+
+## CW→Cη→sphere 的同模型条件重放
+
+`NaturalityCW.extension hzero` 从已证明的 η/ν cofiber 延拓与同一八面体定理只选择一次 g，定义 `CW hzero := cofib g`。`q hzero` 是这个 g 的实际连接映射后接 `shiftFourIso Ceta`，目标为原有 `Ceta[4]`。`fixed_triangles` 对同一个 g、CW 和 q 给出两条三角及同一 m,j 的四个交换方块。唯一新增显式数学前提是同一实际映射的 `η[3] ≫ ν = 0`；它仍未证明。`IsTriangulated` 来自原有同一 `StageInput.witness.tensorInput`，没有新增 Challenge2 字段或选择第二模型。
+
+`Suspension.Fourfold.desuspendFourInternalPage_hasDifferential` 对任意对象、全部整数页和次数，将两次既有双降悬组合；其结论是完整 `HasDifferential` 关系的运输。`quadShiftIso` 明确把四个逐次 [1] 悬移与 [4] 比较。`hasDifferential_desuspendFour` 还提供八条代表元关系的入口。通用声明的公理仅逻辑三项。
+
+固定原生链保持全部字段与次数：
+
+| 原生记录 | 谱 | 精确 d₃ 原生等式 | 下一步悬移 |
+| --- | --- | --- | --- |
+| D462479 | CW_nu_eta | `(15,144)[1] → (18,146)[0]` | 4 |
+| N462480 | Ceta | `(15,140)[1] → (18,142)[0]` | 2 |
+| N462481 | S0 | `(15,138)[2] → (18,140)[2]` | — |
+
+其中 `[0]` 是基底序号零，不是零向量。462479 的 info 保留 SQL NULL；CW 原始 ss.json 映射没有 type 字段，未把它伪造为 `top_cell`。新增 `source462479Full` 与其余两行一起，由通过摘要认证的原始 proofs.db 核对全部 11 字段。重建 trace 快照字节及 SHA256 `9ae1c39d56e62f0a48bc919ad80e4e034ae2acedcb050fd85a42189a4281c4a4` 均不变。
+
+`NaturalityCW.cwToCetaE2` 使用同一 q 后接 `quadShiftIso.inv` 所诱导的实际 E₂ 映射，再接四次实际商页降悬。`cwToCetaE2_hasDifferential` 保留任意整数页、两个次数及所有类。`row462480` 从实际 CW 来源等式及这张**已定义实际复合映射**在两端的坐标等式，得到现有 `NaturalityHighStem.SourceEquation`。这些两端等式没有被证明或自动判定，也没有暗中假定八个中间代表元关系。
+
+`row462481_from_cw` 将这个结果接入已有 462481 重放，使用同一 Cη、同一 presentation P 及原有 sphere tower choices，得到原始 `DifferentialStatement P output462481`。完整剩余义务是实际复合零、实际 CW d₃ 来源、两个 CW→Cη 端点比较、原有四个 Cη→sphere 降悬比较，以及 CW/Cη 坐标族与完整原生模块的识别。固定基础仍继承 `sorryAx`。三个 D/T 分支反驳及实际 E3 覆盖尚未接入，原生 D/N 标签不提供这些证明。因此这条链仍为条件重放，未标为实际认证。
+
+```sh
+python3 -B KIP126/LinProgram/Translate/extract-row462481-trace.py --check
+python3 -B KIP126/LinProgram/Translate/test-native-contract.py
+lake build KIP126.Checks.ClassicalAdams.LinFourfoldSuspension \
+  KIP126.Checks.ClassicalAdams.LinNaturalityCW \
+  KIP126.Checks.ClassicalAdams.LinNaturalityHighStem
+```
+
+四降悬与固定 CW 模型的正式构建通过（3498 jobs）；完整条件重放模块正式构建通过（3501 jobs）。原生合同全部16项测试与固定trace重建通过，包含 reason、NULL、坐标和次数的四类篡改拒绝。独立数学审阅确认全部量词、符号、同一对象选择及两端比较的作用；未新增公理、源交付或总认证读取。根库及新旧自然性审计正式构建通过（4895 jobs），Blueprint web、完整声明链接、活动依赖解析、18项布局检查、来源/接口静态和 Lean 核验均通过。编译后依赖审计同时检查私有辅助函数与内联投影；临时负例中经私有函数读取计算 results 的路径被准确拒绝。原有高 stem 重放模块内容保持不变。
 
 ## 后续依赖与实际接入边界
 
@@ -304,7 +334,7 @@ lake build KIP126.Checks.ClassicalAdams.SuspensionConstruction \
 | 候选覆盖 | 对准确 context/window 构造 `CandidateCoverage`，排除全部其他候选；保留 trial 数量不是覆盖证明 | 既有 `CandidateElimination.sound` / `CandidateExhaustion.sound` |
 | secondary d2 种子 5487 | 已闭合选中行的 d² 与 d∘f 等式；整个96行、associator公式、分解正合/极小性与实际球面d2比较仍待证 | `Translate/extract-secondary-witness.py` 与 issue152 原有审计 |
 | 245131 实际认证 | 实例化上述来源及四条坐标比较；来源原始数据已补，双降悬通用定理已闭合；仍需实际比较 | `Naturality` |
-| 462481 实际认证 | Ceta 来源462480的实际微分、同一 topCell 的四条降悬坐标比较；如重放更早分支，还需同模型 CW 对象/映射、实际d2坐标比较、完整源到达E3及所有祖先trial反驳 | `Naturality`、完整原生矩阵证书和 `row462481-trace.json` |
+| 462481 实际认证 | Ceta 来源462480的实际微分、同一 topCell 的四条降悬坐标比较；CW→Cη→sphere 条件链已构造；实际仍需该 CW 构造的复合零与完整原生模块比较、实际d2坐标比较、完整源到达E3及所有祖先trial反驳 | `Naturality`、完整原生矩阵证书和 `row462481-trace.json` |
 | 消费者迁移 | 5541 已改用显式 one-line 文献和独立坐标证书；其实际基础仍待证，另外五条选定行尚依赖整表。只有实际已经供给的结果才接到同一 `literature`、`bindings.presentation`、`standardRouteModel`；不读取待构造的 `Interface.Solution.challenge2` 来制造 producer | 现有 `ComputationResults`/Main 消费层 |
 
 本次没有新项目公理、Challenge2 根字段、独立 literature、替代实际模型或总交付读取。较早复用的 `row5434` 是由同一 literature 中 one-line 定理和独立坐标证书得到的条件实际结果，不等于重放原生 secondary 算法。
@@ -334,7 +364,9 @@ lake build +KIP126:olean \
   KIP126.Checks.AdamsE2.LinNaturalityHighStemProducts \
   KIP126.Checks.ClassicalAdams.LinSecondary5487 \
   KIP126.Checks.StableHomotopy.CofiberExtension \
-  KIP126.Checks.ClassicalAdams.SuspensionConstruction
+  KIP126.Checks.ClassicalAdams.SuspensionConstruction \
+  KIP126.Checks.ClassicalAdams.LinFourfoldSuspension \
+  KIP126.Checks.ClassicalAdams.LinNaturalityCW
 python3 scripts/check_source_inventory.py
 python3 -m scripts.test_check_source_inventory
 python3 -m scripts.test_external_inputs

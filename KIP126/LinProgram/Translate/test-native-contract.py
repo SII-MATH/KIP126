@@ -47,6 +47,23 @@ class NativeContractTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "sourceCandidate245130 transcription differs"):
                 NATIVE.check_raw_naturality_declarations(changed, source, target)
 
+    def test_cw_source_transcription_preserves_null_and_native_reason(self):
+        trace = json.loads((NATIVE.ROOT /
+            "docs/audits/linprogram-certificate/row462481-trace.json").read_text())
+        rows = {row["id"]: row for row in trace["adjacent_context"]["branch_rows"]}
+        cw, source, target = [rows[i] for i in (462479, 462480, 462481)]
+        text = (NATIVE.LIN / "Raw/NaturalityHighStem.lean").read_text()
+        NATIVE.check_raw_high_stem_declarations(text, cw, source, target)
+        original = NATIVE.raw_log_declaration("source462479Full", cw)
+        for before, after in (("reason := some \"D\"", "reason := some \"N\""),
+                              ("info := none", "info := some \"\""),
+                              ("x := some \"1\"", "x := some \"\""),
+                              ("t := some 144", "t := some 140")):
+            changed = text.replace(original, original.replace(before, after))
+            with self.subTest(before=before), self.assertRaisesRegex(
+                    ValueError, "source462479Full transcription differs"):
+                NATIVE.check_raw_high_stem_declarations(changed, cw, source, target)
+
     def test_changed_polynomial_fails_witness_identity(self):
         witness = copy.deepcopy(self.expected["algebra"]["product_witnesses"][1])
         witness["output"][0][0][1] += 1

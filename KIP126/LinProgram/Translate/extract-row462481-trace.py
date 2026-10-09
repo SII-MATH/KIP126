@@ -261,7 +261,7 @@ def build_report(archive,tmp):
             'Compare both selected Ceta-to-S0 images with the actual topCell and the same two proved tower desuspensions, preserving the existing literature/bindings/model.'
         ],queries=queries)
     b.check_contract(b.read_slices(w),report,(ROOT/b.LEAN).read_text())
-    check_raw_naturality(n.raw_row(log,462480),n.raw_row(log,462481))
+    check_raw_naturality(n.raw_row(log,462479),n.raw_row(log,462480),n.raw_row(log,462481))
     for db in (log,s,c,w,m,wm):db.close()
     return report
 
@@ -333,14 +333,9 @@ def historical_reconstruction(log,s,w,relations,slice_):
         ])
 
 
-def check_raw_naturality(source,target):
+def check_raw_naturality(cw,source,target):
     path=ROOT/'KIP126/LinProgram/Raw/NaturalityHighStem.lean'
-    text=path.read_text()
-    for name,row in [('source462480Full',source),('output462481Full',target)]:
-        pattern=rf'(?ms)^def {re.escape(name)} : LogRow where\n.*?(?=\n\n|\Z)'
-        blocks=re.findall(pattern,text)
-        require(len(blocks)==1 and blocks[0]==n.raw_log_declaration(name,row),
-                f'Raw.NaturalityHighStem.{name} differs from all eleven pinned native fields')
+    n.check_raw_high_stem_declarations(path.read_text(),cw,source,target)
 
 
 if __name__=='__main__':

@@ -265,6 +265,36 @@ foundations established earlier.
   is assumed.
 \end{proof}
 
+\begin{lemma}[Four actual desuspensions preserve differentials]
+  \label{lem:adams-four-suspension-differential}
+  \lean{KIP126.Classical.Adams.Suspension.Fourfold.quadShift,KIP126.Classical.Adams.Suspension.Fourfold.quadShiftIso,KIP126.Classical.Adams.Suspension.Fourfold.quadShiftIso_hom,KIP126.Classical.Adams.Suspension.Fourfold.quadShiftIso_inv,KIP126.Classical.Adams.Suspension.Fourfold.desuspendFourInternalPage,KIP126.Classical.Adams.Suspension.Fourfold.desuspendFourInternalPage_hasDifferential,KIP126.Classical.Adams.Suspension.Fourfold.hasDifferential_desuspendFour}
+  \uses{lem:adams-double-suspension-differential,def:stable-sphere-suspension}
+  \leanok
+  For any object $X$ and actual tower comparisons on $X$, $\Sigma X$,
+  $\Sigma\Sigma X$ and $\Sigma\Sigma\Sigma X$, compose the two actual
+  double-desuspension quotient maps. The resulting map is defined at
+  every integer page and sends bidegree $(s,t)$ to $(s,t-4)$.
+  For every integer $r$, every pair of bidegrees $p,q$, and every pair
+  of second-page labels, it transports the complete
+  \texttt{HasDifferential} relation from the four successive suspensions
+  of $X$ to $X$.
+  An alternative representative formulation takes eight
+  \texttt{DesuspendsClass} relations, one at each of four stages for
+  each endpoint. No independent page map or differential-compatibility
+  hypothesis is introduced.
+  The isomorphism $\kappa_4:\Sigma\Sigma\Sigma\Sigma X\cong\Sigma^4X$
+  is the explicit composite of the specified shift-addition isomorphisms
+  and their images under the suspension functor.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Apply the proved double-desuspension transport twice. Each pair of
+  signed suspension laws cancels its two signs. The representative
+  formulation applies the same two transports to the specified
+  intermediate labels. The formulas for $\kappa_4$ and its inverse
+  follow directly from its definition.
+\end{proof}
+
 % SOURCE: MainPaper/main.tex:1780-1917, representative choices in the proof of Theorem thm:158d451a.
 \begin{lemma}[Synchronized Mahowald representatives]
   \label{lem:mahowald-synchronized-representatives}

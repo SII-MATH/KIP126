@@ -93,6 +93,15 @@ def check_raw_naturality_declarations(text, source, target):
                 f"Raw.Naturality.{name} transcription differs from pinned log {row['id']}")
 
 
+def check_raw_high_stem_declarations(text, cw, source, target):
+    """Keep all eleven fields for the complete fixed CW-to-Ceta-to-S0 chain."""
+    for name, row in (("source462479Full", cw), ("source462480Full", source),
+                      ("output462481Full", target)):
+        pattern = rf"(?ms)^def {re.escape(name)} : LogRow where\n.*?(?=\n\n|\Z)"
+        require(re.findall(pattern, text) == [raw_log_declaration(name, row)],
+                f"Raw.NaturalityHighStem.{name} transcription differs from pinned log")
+
+
 def coordinates(text):
     require(isinstance(text, str), "SQL NULL is not an empty coordinate vector")
     if text == "":
@@ -426,10 +435,17 @@ def rebuild():
         extra_trace = json.loads(trace_bytes)
         validate_recovered_trace(extra_trace, extra_source, extra, mapping)
         raw_high_stem = (LIN / "Raw/NaturalityHighStem.lean").read_text()
-        for name, row in (("source462480Full", extra_source), ("output462481Full", extra)):
-            pattern = rf"(?ms)^def {re.escape(name)} : LogRow where\n.*?(?=\n\n|\Z)"
-            require(re.findall(pattern, raw_high_stem) == [raw_log_declaration(name, row)],
-                    f"Raw.NaturalityHighStem.{name} transcription differs from pinned log")
+        cw_source = raw_row(db, 462479)
+        check_raw_high_stem_declarations(raw_high_stem, cw_source, extra_source, extra)
+        cw_maps = [m for m in config["maps"] if m["name"] == extra_source["info"]]
+        require(len(cw_maps) == 1, "missing or ambiguous native CW map declaration")
+        require(cw_maps[0]["sus"] == 4, "CW-to-Ceta contract requires shift four")
+        require((cw_maps[0]["from"], cw_maps[0]["to"]) ==
+                (cw_source["name"], extra_source["name"]), "CW map endpoints changed")
+        require(cw_source["r"] == extra_source["r"] and
+                cw_source["s"] == extra_source["s"] and
+                cw_source["t"] - cw_maps[0]["sus"] == extra_source["t"],
+                "CW map degrees changed")
         natural_lookup, extra_lookup = bulk_lookup(target), bulk_lookup(extra)
     archive_inputs = []
     for role, name in (("source_page_database", modules[0]["path"]), ("map_matrix_database", mapping["path"])):

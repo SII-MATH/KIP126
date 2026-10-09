@@ -7,6 +7,19 @@ adjacency supplies a differential theorem. The actual Ceta-to-sphere map
 has suspension shift two. -/
 namespace KIP126.Computation.LinProofs.Raw.NaturalityHighStem
 
+def source462479Full : LogRow where
+  id := 462479
+  depth := some 0
+  reason := some "D"
+  name := some "CW_nu_eta"
+  stem := some 129
+  s := some 15
+  t := some 144
+  r := some 3
+  x := some "1"
+  dx := some "0"
+  info := none
+
 def source462480Full : LogRow where
   id := 462480
   depth := some 0
@@ -39,6 +52,14 @@ def output462481 : DifferentialRow := ⟨462481, "N", 15, 138, 3, [2], [2]⟩
 set_option maxRecDepth 4096 in
 theorem output462481_in_export :
     RawData.shard57[55]? = some output462481 := rfl
+
+/-- The upstream CW-to-Cη record shifts native internal degree by four. -/
+def cwMapSuspension : Int := 4
+
+theorem native_cw_degree_shift :
+    source462479Full.s = source462480Full.s ∧
+      source462479Full.t.map (· - cwMapSuspension) = source462480Full.t := by
+  decide
 
 def mapSuspension : Int := 2
 
