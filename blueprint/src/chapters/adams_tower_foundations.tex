@@ -706,6 +706,41 @@ nor a t-structure detecting its bounds from homotopy groups.
   \leanok
 \end{proof}
 
+\begin{proposition}[Reconstructing the same complete tensor shift structures]
+  \label{prop:h6-adjoint-tensor-shift-reconstruction}
+  \lean{KIP126.StableHomotopy.TensorShift.leftShift_eq_adjoint,KIP126.StableHomotopy.TensorShift.commShift_ofIso_roundtrip,KIP126.Foundation.TensorInput.leftShift_eq_adjoint,KIP126.Foundation.TensorInput.rightShift_eq_adjoint}
+  \uses{def:mathlib-shift,def:stage-zero-cooperation-contract}
+  \leanok
+  For arbitrary categories with integer shifts and an adjunction
+  $L\dashv R$, fix the same shift structures on both functors.
+  If the actual adjunction unit commutes with those shifts, the entire
+  chosen shift structure on $L$ equals the adjoint construction from the
+  chosen structure on $R$. Transporting a shift structure along the inverse
+  of a functor isomorphism and then along the isomorphism recovers the
+  original structure.
+
+  For every object $X$ of the same \texttt{FoundationInput} and
+  \texttt{TensorInput}, the existing internal-Hom unit condition therefore
+  identifies the chosen left-tensor shift structure with the adjoint
+  construction. Transport through the same braiding recovers the entire
+  original right-tensor shift structure. These equalities retain every
+  integer shift and every object; no new input or replacement model is used.
+
+  The equalities do not prove naturality in the right tensor parameter
+  or compatibility with the associator. Both fields of
+  Definition~\ref{def:h6-right-tensor-suspension-compatibility} remain
+  separate obligations for the given full family.
+\end{proposition}
+\begin{proof}
+  \leanok
+  For each integer shift, uniqueness of the left commutation isomorphism
+  compatible with the actual adjunction unit identifies it with the adjoint
+  construction. Extensionality gives equality of the complete shift records.
+  Expanding transport along an isomorphism twice and cancelling its inverse
+  proves the roundtrip identity. Apply these results to the existing
+  internal-Hom adjunction and the specified left-shift/braiding equality.
+\end{proof}
+
 \begin{proposition}[Transporting a boundary past a braiding]
   \label{prop:h6-braided-boundary-transport}
   \lean{KIP126.StableHomotopy.braidedTensorPairing_swap,KIP126.StableHomotopy.braidedSuspension_transport}

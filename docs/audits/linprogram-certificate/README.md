@@ -426,6 +426,28 @@ lake build KIP126.Checks.ClassicalAdams.BoundaryConnectingAction \
   KIP126.Checks.ClassicalAdams.TensorBraidingCompatibility
 ```
 
+## 同一张量悬移结构的完整重建
+
+`StableHomotopy.TensorShift.leftShift_eq_adjoint` 对任意有整数悬移的范畴和伴随证明：固定右伴随的同一悬移结构，若实际伴随单位与所选悬移兼容，则整个左伴随悬移结构等于标准伴随构造。`commShift_ofIso_roundtrip` 证明沿函子同构及其逆的双次运输恢复原结构。
+
+`Foundation.TensorInput.leftShift_eq_adjoint` 与 `rightShift_eq_adjoint` 将这些等式用于同一个 foundation、同一个内部 Hom 及同一辫交换。它们保留所有对象和所有整数悬移，既不新增 TensorInput 字段，也不替换已有左右悬移选择。
+
+这里尚未证明 `RightTensorSuspensionCompatibility`。令 `c_X(B)` 为原 `tensorRight X` 在悬移1的比较，精确剩余命题为：对所有 B/X/Y 和所有 `f : X ⟶ Y`，
+
+```text
+(B⟦1⟧ ◁ f) ≫ c_Y(B) = c_X(B) ≫ (B ◁ f)⟦1⟧'
+(α_ (B⟦1⟧) X Y).hom ≫ c_(X⊗Y)(B) =
+  (c_X(B) ▷ Y) ≫ c_Y(B⊗X) ≫ (α_ B X Y).hom⟦1⟧'
+```
+
+这两项仍须对原完整参数族证明；各个伴随的单位/余单位兼容性没有在此被当作参数自然性或 currying 的悬移兼容性。边界公式、完整 Leibniz 规则和固定模型实际认证状态均未升级。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.TensorBraidingCompatibility
+```
+
+本批四个新定理的正式构建与传递公理审计通过，仅含 `propext`、`Classical.choice`、`Quot.sound`。检查对同一 TensorInput 的每个对象和任意整数悬移分别实例化完整结构等式，并拒绝导入 Interface、Main、LinProgram 或固定 StageInput。联合根库构建4932 jobs、Blueprint声明链接与来源/接口Lean核验通过；右参数自然性及结合相容性仍保留上述原量词和待证状态。
+
 ## 两张完整原生模块映射图
 
 `Generated/ModuleMaps` 固定同一 `v126.3.cw49` 的完整 Ceta→S0 图（887 行、IDs 0–886）和 CW_nu_eta→Ceta 图（844 行、IDs 0–843），滤过均为 0，悬移分别为 2、4。原始 `id,map`、完整 schema、version 与 ss.json 条目保存在 JSON；CW 的原 timestamp `1690291275` 及缺少 type 字段的事实原样保留。Lean 使用完整数组及 `Fin sourceGeneratorCount` 索引，不给缺失行设置默认零。两图 ID 0 的空字符串是已记录零；SQL NULL、未知哨兵和缺失 ID 不被当成零。后续数学解释必须保留该图语义，不能直接借用把空单项式视为单位元的关系解析器。
@@ -457,7 +479,7 @@ lake build KIP126.Checks.AdamsE2.LinNativeModuleMapGraphs
 lake build KIP126.Checks.AdamsE2.LinModuleMapGrading
 ```
 
-这些定理不提供 Ceta 的实际 Ext 比较、实际 cofiber 映射识别或源微分，也不完成 CW 原生图的次数认证。完整商映射及实际模型比较仍未标为已认证。
+这些定理不提供 Ceta 的实际 Ext 比较、实际 cofiber 映射识别或源微分。CW 原生图的次数认证见下文；完整商映射及实际模型比较仍未标为已认证。
 
 本批正式定向构建1704 jobs、根库4922 jobs均通过；新增声明及整个887项次数证书的传递公理检查仅含标准逻辑三项，无实际模型、Main、Interface或固定StageInput依赖。来源清单26 sources / 119 artifacts、来源/接口声明的Lean核验、18项布局测试、15项Blueprint测试及活动依赖解析通过；Blueprint web、全部声明链接检查和diff检查通过。固定原生输入、文献来源、已有bindings和实际认证状态均未改变。
 
@@ -477,9 +499,23 @@ Presentation.evaluateRelation cwImages "2,1,766;79,1,196;90,1,187" = 0
 lake build KIP126.Checks.AdamsE2.LinCWMapSupport
 ```
 
-这是单条原生关系的闭合证明，没有关系消失假设。全69263条 CW 关系、整张图的商下降、次数及实际谱映射比较仍需各自落实；本证书不改变实际认证状态。
+这是单条原生关系的闭合证明，没有关系消失假设。全69263条 CW 关系、整张图的商下降及实际谱映射比较仍需各自落实；次数证明见下节，本证书不改变实际认证状态。
 
 正式定向构建1701 jobs、包含该证书的根库构建4925 jobs均通过。17项声明的传递公理审计仅含 `propext`、`Classical.choice`、`Quot.sound`；检查同时核实证明继续调用原检查器及完整目标适配引理。来源清单26 sources / 119 artifacts、来源/接口字段的Lean核验、18项布局测试、15项Blueprint测试和活动依赖解析通过；Blueprint web、全部声明链接与diff检查通过。原文献、bindings、固定模型及认证状态保持原有含义。
+
+## 完整 CW 原生图的次数与商映射限制
+
+`CWNuEta.generatorRow_present` 对全部844个源生成元证明记录存在，再用 `Option.get` 读取原次数。`CWToCeta.generatorImage` 直接解释同一官方图为原完整 Ceta 商中的元素；`NativeModuleCertificates.Support.evaluate_nativeModuleTerms` 对任意秩、任意字符串证明有限项求值与原解析器一致，空图像单独解释为零。合法原生输入仍由固定输入导出检查负责。
+
+`NativeMapCertificates.cw_degree_all` 与 `cw_nativeImage_mem` 核验官方全部844项图，次数为源次数加 `(0,-4)`。目标保持全部887个生成元、76569条原关系，系数保持原2914生成元的球面商；ID0的负目标次数 `(0,-4)` 和记录零都明确保留。`homogeneousModuleTermsCheck_sound` 对整个有限项列表证明次数检查可靠。
+
+`cw_desc_mem` 保留任意整数次数和齐次部分中的所有元素；`cwDescAt` 对任意自然数 s/t 给出源 `(s,t+4)` 子空间到目标 `(s,t)` 子空间的 F₂ 线性限制。两者仍显式要求 **全部69263条原始源关系** 在同一完整图下为零。全关系认证与实际 Ext/谱映射比较仍待落实，没有新增截断、目标模型或实际认证。
+
+```sh
+lake build KIP126.Checks.AdamsE2.LinCWMapGrading
+```
+
+正式定向构建1709 jobs与联合根库构建4932 jobs均通过。34项声明的传递公理检查仅含标准逻辑三项，并检查完整目标有限项证书仍调用原模块检查器的可靠性定理。来源清单26 sources / 119 artifacts、来源/接口Lean核验、18项布局测试、15项Blueprint测试、700个活动节点的依赖检查、Blueprint web、全部声明链接与diff检查均通过。完整源关系消失和实际模型比较仍未标为已认证。
 
 ## 后续依赖与实际接入边界
 

@@ -1,3 +1,4 @@
+import KIP126.LinProgram.Certificates.ModuleMaps.CWToCeta.Grading
 import KIP126.LinProgram.Certificates.ModuleMaps.CWMaxSupport
 import KIP126.LinProgram.Certificates.ModuleMaps.CetaToSphere.Grading
 import KIP126.Def.StableHomotopy.Implementation.TensorCompatibility.Proofs

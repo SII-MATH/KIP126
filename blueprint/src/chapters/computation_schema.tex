@@ -780,8 +780,9 @@ mathematical objects and conditions.
 
   These finite graphs are data. The exporter verifies native shifted degrees
   against all original source, target and sphere generators. Independent Lean
-  grading of the entire Ceta graph is supplied by
-  Proposition~\ref{prop:lin-native-ceta-map-grading}; full relation certificates
+  grading of both entire graphs is supplied by
+  Propositions~\ref{prop:lin-native-ceta-map-grading} and
+  \ref{prop:lin-native-cw-map-grading}; full relation certificates
   must still be supplied to Proposition~\ref{prop:lin-native-module-map-descent}.
   Neither the graphs nor these degree checks identify an actual spectrum map.
 \end{definition}
@@ -814,13 +815,14 @@ mathematical objects and conditions.
   \label{def:lin-native-homogeneous-spans}
   \lean{KIP126.LinModule.Presentation.coefficientDegree,KIP126.LinModule.Presentation.homogeneousSpan,KIP126.LinModule.Presentation.homogeneousPart}
   \lean{KIP126.LinModule.Ceta.generatorRow_present,KIP126.LinModule.Ceta.generatorData,KIP126.LinModule.Ceta.generatorDegree,KIP126.LinModule.NativeMapCertificates.coefficientPart}
+  \lean{KIP126.LinModule.CWNuEta.generatorRow_present,KIP126.LinModule.CWNuEta.generatorData,KIP126.LinModule.CWNuEta.generatorDegree}
   \uses{def:lin-native-module-presentations}
   \leanok
   In the same full module quotient, span over $\mathbb F_2$ all elements
   $q(x^m)e_i$ with $\deg(m)+\deg(e_i)=d\in\mathbb Z^2$.
   All coefficient monomials and all native module generators are allowed;
-  no extra truncation or zero relation is imposed. The full Ceta row-presence
-  proof supplies each generator's recorded degree without a default row.
+  no extra truncation or zero relation is imposed. The full Ceta and CW
+  row-presence proofs supply each generator's recorded degree without a default row.
   Taking one generator of degree zero and value one in the original sphere
   quotient gives its integer-indexed coefficient spans.
   These spans do not assert direct-sum independence or an actual Ext comparison.
@@ -870,6 +872,58 @@ mathematical objects and conditions.
   images against the original generator degrees. Polynomial evaluation lies
   in the corresponding span. Apply homogeneous descent and the equality
   with the original nonnegative sphere submodules.
+\end{proof}
+
+\begin{proposition}[Native module strings and complete-target evaluation]
+  \label{prop:lin-native-module-terms-evaluation}
+  \lean{KIP126.LinE2.NativeModuleCertificates.Support.ModuleTerms,KIP126.LinE2.NativeModuleCertificates.Support.termsExpression,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_substituteModuleWord,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_substituteModuleRelation,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_moduleRelationTerms,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_nativeModuleTerms,KIP126.LinE2.NativeModuleCertificates.Support.check_terms_projection_zero}
+  \uses{prop:lin-native-module-support-compression,prop:lin-native-module-map-descent}
+  \leanok
+  Finite native module terms evaluate to the existing full-target parser
+  value for every source and target rank and every string. The recorded
+  empty map image evaluates to zero, separately from the relation parser.
+  Substitution commutes with evaluation. Restricting the checker to a support
+  requires a checked support condition for the input and every relation;
+  its conclusion remains in the original full target.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Induct on native words and lists of terms, using the existing scalar
+  projection, module evaluation and checker soundness. The parser theorem
+  does not assert that an arbitrary string is a valid original input.
+\end{proof}
+
+\begin{proposition}[Degrees of the complete native CW-to-eta-cofiber graph]
+  \label{prop:lin-native-cw-map-grading}
+  \lean{KIP126.LinModule.CWToCeta.generatorImage,KIP126.LinModule.CWToCeta.imageTerms_evaluate}
+  \lean{KIP126.LinModule.NativeMapCertificates.nativeMonomial_smul_mem,KIP126.LinModule.NativeMapCertificates.homogeneousModuleTermsCheck,KIP126.LinModule.NativeMapCertificates.homogeneousModuleTermsCheck_sound}
+  \lean{KIP126.LinModule.NativeMapCertificates.cw_degree_all,KIP126.LinModule.NativeMapCertificates.cw_nativeImage_mem,KIP126.LinModule.NativeMapCertificates.cw_desc_mem,KIP126.LinModule.NativeMapCertificates.cwDescAt,KIP126.LinModule.NativeMapCertificates.cwDescAt_val}
+  \uses{def:lin-native-complete-map-graphs,prop:lin-native-homogeneous-descent,prop:lin-native-module-terms-evaluation}
+  \leanok
+  Every one of the 844 original CW generator images belongs to the
+  eta-cofiber homogeneous span of its original degree plus $(0,-4)$.
+  Parse every official graph string with the native module parser, including
+  the recorded empty zero image at shifted degree $(0,-4)$. The coefficient
+  algebra still has all 2914 original generators, and the target quotient
+  still uses all 887 generators and all 76569 original relations.
+  Source and target degrees use their actual rows with proved presence,
+  without a default generator row.
+
+  Conditional on vanishing of all 69263 original source relations under
+  these same images, the complete quotient map sends every integer span
+  of degree $d$ into degree $d+(0,-4)$. For every $s,t\in\mathbb N$ it
+  restricts to an $\mathbb F_2$-linear map from the source span of degree
+  $(s,t+4)$ to the target span of degree $(s,t)$.
+  Actual spectrum-map comparison remains a separate obligation.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Prove that each native coefficient monomial shifts a full module span by
+  its recorded degree. Summation gives soundness of the module-term degree
+  checker. Kernel computation checks every term in the entire official graph.
+  The all-string parser evaluation theorem identifies those terms with the
+  full target quotient images. Apply homogeneous descent to the original
+  source relation list and restrict at nonnegative target indices.
 \end{proof}
 
 \begin{lemma}[Native module quotient reductions for the naturality chain]
