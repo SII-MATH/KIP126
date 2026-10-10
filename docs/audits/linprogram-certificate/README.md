@@ -5,6 +5,8 @@
 
 本记录按用户明确要求的依赖顺序推进。所引用 Page 的 P0–P7 正文尚未能从当前会话读取，已请求正文；以下里程碑不是对未读取的分期验收条款的复述。旧 issue152 工作以现有模块复用，本次新增结果分别核验。
 
+迁移前最新状态见文末“分支迁移交接（2026-10-10）”；前文批次进度为历史记录。
+
 ## 固定原生输入与 statement 合同
 
 `KIP126/LinProgram/Raw/manifest.json` 保留原始数据库/CSV 的固定摘要，并纳入 `ss.json` 在既有 `select-route.py` 中已经固定的 SHA256：
@@ -719,3 +721,59 @@ leanblueprint web
 lake exe checkdecls blueprint/lean_decls
 git diff --check
 ```
+
+## 分支迁移交接（2026-10-10）
+
+本节是迁移前的最新快照；上文“正在运行”“当前批次”等措辞保留为各里程碑的历史记录。原 P0–P7 goal 保持 **paused、未完成**，此次仅收尾保存，不启动新证明任务，也不提升任何实际认证状态。目录整理与通用证明已经保存在 `c72e63b59`；此后新增的是下面的 Blueprint 路线和迁移审计记录。
+
+### 已保存的路线与证明边界
+
+`blueprint/src/chapters/computation_schema.tex` 的 `sec:lin-native-presentation-construction` 新增六个 open 节点：原生代表元规格、分解正确性、统一生成元类与乘积、固定球面比较、商映射下降及双射、实际代表元乘法比较。它们通过 `\uses` 接到既有 `thm:bounded-sphere-multiplication`，并复用既有 Ext/cobar 比较及数据基底认证节点。`content.tex` 已增加导航。
+
+这些节点全部标为 `\notready`，没有宣称新的 Lean 实现，也没有新增公理、交付字段、实际模型或读取待构造总交付。合同说明按现有 Lean 类型澄清：`P.product` 覆盖所有非负输入次数，数据比较只要求总内部次数不超过 261。`P` 的真正构造、同一实际模型的基础义务、全循环乘法/边界比较、实际来源微分与候选反驳、其余消费者迁移仍未完成。精确数学剩余项见上文“后续依赖与实际接入边界”及新增 Blueprint 节点。
+
+### 已停止的全量证书批次
+
+已检查三个 runner 和残留 worker 记录对应的进程，未发现仍在运行的原批次进程；无需为迁移终止任务。状态文件中的 `phase=running` 和任务列表是陈旧记录，不能据此判断任务活跃。读取的历史状态为：
+
+| 批次 | 历史 success / 总模块数 | 观察到的收据数 | 完整原生认证 | 实际认证 |
+| --- | --- | --- | --- | --- |
+| Ceta → sphere，旧完整计划 | 40 / 267 | 40 | false | false |
+| CW → Ceta | 165 / 434 | 165 | false | false |
+| secondary seed 5487 | 213 / 328 | 213 | false | false |
+
+这些数字是模块数，不是已认证关系数；此次没有重新核验每份旧收据的全部输入与编译产物。原始状态、清单摘要和进程核对结果保存在同目录 `migration-checkpoint.json`。Ceta 的 267 是旧计划模块数；仓库便携入口为 266 模块，差异是共用支持模块复用，不能直接混用完成计数。
+
+历史状态、manifest、日志、收据和临时脚本已逐字核对后备份至本机持久目录：
+
+`/inspire/hdd/global_user/czxs25250150/ops/tmp/linprogram-migration-20261010/partial-replay-evidence.tar.gz`
+
+归档的 SHA-256、大小和成员数记录在 `migration-checkpoint.json`。这个本机备份不随 Git 迁移，不含编译产物和冻结依赖库，也不是完整认证或可直接恢复的构建快照。原 `/tmp/lin-native-ceta-full`、`/tmp/lin-native-cw-production`、`/tmp/lin-secondary-production` 均保留；如需带走部分编译缓存，应保留这些完整目录，并由 runner 重新验证，不得只复制成功标志。
+
+### 迁移后的入口
+
+先恢复 `docs/external-inputs.json` 登记的 Git LFS 实体（包括两个 secondary SQLite 快照）；LFS 指针不能代替数据库内容。原生完整重放可完全从仓库中的固定输入和下列入口重建，不依赖上述临时目录：
+
+- `KIP126/LinProgram/Translate/module-map-certificates/README.md`：Ceta/CW 准备、检查及全量重放。
+- `KIP126/LinProgram/Translate/secondary-seed5487-certificates/README.md`：完整 96 行 secondary 计划及重放。
+- `KIP126/LinProgram/README.md`：整理后的模块位置。
+
+换 checkout 路径后重新生成 manifest；旧收据只有在全部输入键及输出摘要重新核验一致后才可复用。保持完整原生认证和实际认证分开：即使所有批次跑完，仍需独立完成实际谱/微分比较。新证明工作应从 Blueprint 依赖节点继续，而不是从 Main 的临时总交付公理反向取值。
+
+### 本次校验
+
+此次没有修改 Lean 源码；`c72e63b59` 的完整构建和 262 项公开声明比较记录见上一节。新增 Blueprint 路线已通过网页构建、所有活动标签/依赖及无环性解析、来源清单检查（26 sources / 121 artifacts）、外部接口静态检查和生成的 Lean 接口核查、完整 Blueprint Lean 声明链接核查及 `git diff --check`。六个新节点均保持未完成，已有存在性目标确实依赖新增构造节点。
+
+从 checkout 根目录复查文档与接口：
+
+```sh
+python3 -B scripts/blueprint_frontier.py --output-dir /tmp/lin-migration-frontier
+python3 -B scripts/check_source_inventory.py
+python3 -B scripts/check_external_inputs.py --lean-check /tmp/LinMigrationInputs.lean
+lake env lean /tmp/LinMigrationInputs.lean
+leanblueprint web
+lake exe checkdecls blueprint/lean_decls
+git diff --check
+```
+
+本次运行使用 `requirements-blueprint.txt` 指定的 leanblueprint 0.0.20。完整原生批次没有重新启动；不要求在分支迁移前完成尚未解决的数学研究。

@@ -1,0 +1,153 @@
+{
+  "schema": "linprogram-migration-checkpoint/v1",
+  "observed_at_utc": "2026-10-10T10:21:33.891629+00:00",
+  "branch": "codex/linprogram-certificate",
+  "implementation_commit": "c72e63b599767fe733edc96bd0743ddd00c14de2",
+  "goal_status": "paused",
+  "goal_completed": false,
+  "actual_certification_upgraded": false,
+  "runs": [
+    {
+      "output_directory": "/tmp/lin-native-ceta-full",
+      "historical_status": {
+        "actual_spectrum_map_comparison_certified": false,
+        "complete_native_quotient_map_certified": false,
+        "external_key": "6fb3776e55c3235b06c638f48799c0c395ee4b63a79221f97ed1b75b97073d5c",
+        "failed": [],
+        "fixed_library": "/tmp/lin-native-ceta-full/frozen/6fb3776e55c3235b06c638f48799c0c395ee4b63a79221f97ed1b75b97073d5c/lib/lean",
+        "fixed_source_root": "/tmp/lin-native-ceta-full/frozen-sources/a9dc89c2af75303689efa5b1ae116312ff4423334ff164356f833c6482c763b9",
+        "full_plan": true,
+        "manifest_sha256": "6066c78b34de2344083478c3a3db09fde1cb07c17cc703affb76f9700bdd3616",
+        "pending": 225,
+        "phase": "running",
+        "resumed": 14,
+        "runner_pid": 1667779,
+        "running": [
+          "KIP126.LinProgram.Certificates.ModuleMaps.CetaToSphere.Relations019",
+          "KIP126.LinProgram.Certificates.ModuleMaps.CetaToSphere.Relations020"
+        ],
+        "schema": "lin-native-ceta-runner/v2-fixed-inputs",
+        "selected": 267,
+        "started_at": 1791595772.863176,
+        "success": 40,
+        "total_modules": 267,
+        "updated_at": 1791604239.5370774
+      },
+      "runner_process_present": false,
+      "remaining_worker_records": [
+        {
+          "record": "KIP126.LinProgram.Certificates.ModuleMaps.CetaToSphere.Relations019.json",
+          "pid": 4179081,
+          "process_present": false
+        },
+        {
+          "record": "KIP126.LinProgram.Certificates.ModuleMaps.CetaToSphere.Relations020.json",
+          "pid": 185052,
+          "process_present": false
+        }
+      ],
+      "observed_receipt_count": 40,
+      "receipt_index_sha256": "9966d4ed7236d0fc563caf64e7d984bb892cad3bf600f4157066010920f1579a",
+      "receipt_validity_rechecked": false,
+      "interpretation": "Stopped incomplete run; historical running fields are stale. Module counts are not certified relation counts."
+    },
+    {
+      "output_directory": "/tmp/lin-native-cw-production",
+      "historical_status": {
+        "actual_spectrum_map_comparison_certified": false,
+        "complete_native_quotient_map_certified": false,
+        "external_key": "e281f2ee4b5216c206d806823e9957ecdbb39b88115e6c707425c3516db0c4ed",
+        "failed": [],
+        "fixed_library": "/tmp/lin-native-cw-production/frozen/e281f2ee4b5216c206d806823e9957ecdbb39b88115e6c707425c3516db0c4ed/lib/lean",
+        "fixed_source_root": "/tmp/lin-native-cw-production/frozen-sources/765d263d4317006b6ada8bdfa5b5824baf9973958c86139140dc42b789d7e3eb",
+        "full_plan": true,
+        "manifest_sha256": "9321819b67300930449f1fd1ee38af245157719d0479785e9e6d5d60f6f9fba5",
+        "pending": 267,
+        "phase": "running",
+        "resumed": 0,
+        "runner_pid": 2718771,
+        "running": [
+          "KIP126.LinProgram.Certificates.ModuleMaps.CWToCeta.Relations010",
+          "KIP126.LinProgram.Certificates.ModuleMaps.CWToCeta.Relations011"
+        ],
+        "schema": "lin-native-ceta-runner/v2-fixed-inputs",
+        "selected": 434,
+        "started_at": 1791596980.7899182,
+        "success": 165,
+        "total_modules": 434,
+        "updated_at": 1791604238.173611,
+        "validated_complete_plan": {
+          "all_relation_count": 69263,
+          "audit": "KIP126.LinProgram.Certificates.ModuleMaps.CWToCeta.Checks",
+          "final": "KIP126.LinProgram.Certificates.ModuleMaps.CWToCeta.Proofs",
+          "generator": "/inspire/hdd/global_user/czxs25250150/linprogram-certificate/KIP126/LinProgram/Translate/module-map-certificates/generate-cw.py",
+          "schema": "lin-native-complete-cw-certificate-build/v2-repository-support",
+          "source_blocks": 136
+        }
+      },
+      "runner_process_present": false,
+      "remaining_worker_records": [
+        {
+          "record": "KIP126.LinProgram.Certificates.ModuleMaps.CWToCeta.Relations010.json",
+          "pid": 289830,
+          "process_present": false
+        }
+      ],
+      "observed_receipt_count": 165,
+      "receipt_index_sha256": "1bdb8c37eaeec708175a1171e36d1f2c2fffbf6687624132e3c085186a56a073",
+      "receipt_validity_rechecked": false,
+      "interpretation": "Stopped incomplete run; historical running fields are stale. Module counts are not certified relation counts."
+    },
+    {
+      "output_directory": "/tmp/lin-secondary-production",
+      "historical_status": {
+        "actual_d2_certified": false,
+        "external_key": "b2083f3bad45cd4dcc2c0f80a0fbd22762474a53df064a39a4a3f2925ff60d78",
+        "failed": [],
+        "fixed_library": "/tmp/lin-secondary-production/frozen/b2083f3bad45cd4dcc2c0f80a0fbd22762474a53df064a39a4a3f2925ff60d78/lib/lean",
+        "fixed_source_root": "/tmp/lin-secondary-production/frozen-sources/a0eba694c571c05bcbbac45f20027393c7a2ac742ca618f52463e079e7a759b2",
+        "full_native_96_composition_certified": false,
+        "full_plan": true,
+        "manifest_sha256": "cf4b6e487d32e423f525a39bbceccf0b01b013da08557e3d21034a7060b2be62",
+        "pending": 113,
+        "phase": "running",
+        "resumed": 0,
+        "runner_pid": 1052481,
+        "running": [
+          "KIP126.LinProgram.Certificates.Secondary.Seed5487.Full.ProductsD033B013",
+          "KIP126.LinProgram.Certificates.Secondary.Seed5487.Full.ProductsD033B014"
+        ],
+        "schema": "lin-secondary-seed5487-runner/v1-fixed-inputs",
+        "secondary_associator_certified": false,
+        "selected": 328,
+        "started_at": 1791599785.9936266,
+        "success": 213,
+        "total_modules": 328,
+        "updated_at": 1791604210.2588289,
+        "validated_complete_plan": {
+          "audit": "KIP126.LinProgram.Certificates.Secondary.Seed5487.Full.CompositionChecks",
+          "final": "KIP126.LinProgram.Certificates.Secondary.Seed5487.Full.Compositions",
+          "generator": "/inspire/hdd/global_user/czxs25250150/linprogram-certificate/KIP126/LinProgram/Translate/secondary-seed5487-certificates/generate.py",
+          "native_rows": 96,
+          "ordered_products": 15839,
+          "schema": "seed5487-complete-native-certification-sources/v1"
+        }
+      },
+      "runner_process_present": false,
+      "remaining_worker_records": [],
+      "observed_receipt_count": 213,
+      "receipt_index_sha256": "e2427930540f8e9dd3b896c38db5ae57c38d1692d8943fa83c14d01c787be7d3",
+      "receipt_validity_rechecked": false,
+      "interpretation": "Stopped incomplete run; historical running fields are stale. Module counts are not certified relation counts."
+    }
+  ],
+  "local_evidence_archive": {
+    "path": "/inspire/hdd/global_user/czxs25250150/ops/tmp/linprogram-migration-20261010/partial-replay-evidence.tar.gz",
+    "sha256": "b0a3005c7089174e7a3b2fd1109267b07bfc90ec0ef0e2d519bdb26065a99c3e",
+    "bytes": 8245742,
+    "members": 881,
+    "contents": "Historical metadata, receipts, logs and temporary runner scripts; excludes compiled artifacts and frozen libraries. This is an audit backup, not a resumable build snapshot or a complete certificate.",
+    "git_tracked": false
+  },
+  "reproduction": "Use the committed module-map-certificates and secondary-seed5487-certificates packages. A changed checkout path requires regenerating the manifest and revalidating receipts. Preserve original /tmp output directories if partial compiled caches are wanted; no cache reuse is assumed."
+}
