@@ -1,3 +1,5 @@
+import KIP126.LinProgram.Certificates.Secondary.Milnor.ProductTables
+import KIP126.LinProgram.Certificates.Secondary.IndexedExpansion
 import KIP126.LinProgram.Certificates.ModuleMaps.CWToCeta.Grading
 import KIP126.LinProgram.Certificates.ModuleMaps.CWMaxSupport
 import KIP126.LinProgram.Certificates.ModuleMaps.CetaToSphere.Grading

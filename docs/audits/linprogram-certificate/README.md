@@ -535,6 +535,28 @@ python3 -B -m unittest discover -s KIP126/LinProgram/Translate/module-map-certif
 
 只有全部原生关系、完整商映射及最终审计实际通过，才可将 `complete_native_quotient_map_certified` 置为真。`actual_spectrum_map_comparison_certified` 始终为假，直至另行完成实际模型比较；当前两项全量 Lean 运行仍未报告完成。旧 Ceta 运行使用已固定的原计划，最终结果还须独立检查全关系定理和审计，不能仅凭旧执行器的完成标志认定。
 
+## 完整 secondary 复合证书的通用检查器
+
+`Secondary/Milnor/Products.lean` 的 `fastSingletonProductCheck_sound` 对任意秩、任意两个原秩单项式与有限候选输出，推出原有 `MilnorCertificates.IsMilnorProductAll`，结论保留全部原秩单项式。`degreeBasis_mem` 精确穷尽齐次次数，原次数支撑定理处理其他所有次数；没有缩小结论量词。快速二分幂通过原有 Frobenius 证明保持 tensorValue，再由原通用多项式环的系数抽取反射回原 `pairTensor`。沿用原 Milnor 定义，没有建立另一套乘法语义。
+
+`Secondary/Expansion.lean` 的 `compositionCheck_sound` 和 `compose_of_checked_expansion` 把已认证乘积传入原 `resolvePaths/compose`，结论覆盖全部目标生成元和原秩单项式。有限支持并集上的奇偶比较证明全系数等式；缺像、缺乘积均失败，不能因后续抵消而省略依赖。`some []` 必须是显式提供且另有乘积证明的零值。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.LinSecondaryChecker
+```
+
+检查包含原生行 1048577 和 1572866 的独立重放，只调用原乘积证书而不导入原行证明；另检查非交换次序、错误秩、遗漏项、额外次数、单位、重复抵消、目标错配和缺失依赖。30项声明通过传递公理审计，只有标准逻辑三项；禁止 Def/Interface/Main 导入。正式定向构建1398 jobs通过。尚未将这套通用机制标作完整96行或实际球面 d2 认证。
+
+共享 `HomogeneousCoproductTable` 自带整张表等于完整次数基及其快速余乘法的证明；`fastSingletonProductCheckWithTable_sound` 继续检查实际输入次数之和并推出同一全单项式结论。`Secondary/IndexedExpansion.lean` 的 `indexedCompositionCheck_sound`核对完整原路径列表，再用有排列证明的排序和相邻成对抵消比较表达式；排序算法的完成性不是可靠性的隐藏前提。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.LinSecondaryIndexed
+```
+
+索引检查覆盖遗漏/额外路径、错误乘积输入/目标、缺失ID/像、重复抵消和错误期望项；正向语义回归传入真正的原乘积证明。共享表检查另拒绝次数不匹配、秩改变和遗漏输出。整批运行仍必须实际检查全部15839项产品和96行，不能由这些回归替代。
+
+包含共享表和索引复合的正式根库构建4947 jobs通过；两项检查模块共审计43项声明，均仅含标准逻辑三项。来源清单26 sources / 119 artifacts、来源/接口字段核验、18项布局测试、15项Blueprint测试及活动依赖检查通过；Blueprint web、全量声明链接、来源/接口字段的Lean核验与diff检查也通过。此记录不改变实际球面认证状态。
+
 ## 后续依赖与实际接入边界
 
 | 目标 | 精确剩余义务 | 可复用模块 |
@@ -604,6 +626,6 @@ git diff --check
 
 远程提交 `295adaedc` 的 `Lin-program/` 已原样合并，首批证书与合并提交 `2a3c5c5c7` 已同步远程。该独立研究项目没有到本仓库固定球面模型的比较证明；其有限范围认证不扩展为本次实际目标的认证。已有 `Ceta__S0` 代数块只覆盖源 `t≤12`，不覆盖本目标 `t=19,21`；S0 `(6,44)` 的导入 d2 矩阵也不是原生日志 5487 的 secondary 算法证明。
 
-为后续有限链等式直接复用原有 Milnor 核，根 Lake 注册了九个非默认模块，未复制数学主体或纳入旧项目的全部生成批次。`MilnorCertificates.StableProduct` 已正式构建，打印的乘法/秩稳定性定理只有标准逻辑公理。
+为后续有限链等式直接复用原有 Milnor 核，首批在根 Lake 注册了所需非默认模块，未复制数学主体或纳入旧项目的全部生成批次。`MilnorCertificates.StableProduct` 已正式构建，打印的乘法/秩稳定性定理只有标准逻辑公理。
 
 本批新增的完整原生分支商、E3 条件运输、462481 条件重放、5541 消费者迁移、第三条 secondary 等式和通用余纤维延拓，均已有正式构建及 Blueprint 声明核验。独立复核确认没有缩小量词、删除剩余前提或读取待构造总交付；实际模型的未完成数学义务仍如上记录。

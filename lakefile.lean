@@ -30,7 +30,11 @@ lean_lib MilnorCertificates where
   globs := #[.one `MilnorCertificates.Basic, .one `MilnorCertificates.Grading,
     .one `MilnorCertificates.WindowSoundness, .one `MilnorCertificates.RankStability,
     .one `MilnorCertificates.Import, .one `MilnorCertificates.GeneralTactic,
-    .one `MilnorCertificates.StableProduct]
+    .one `MilnorCertificates.StableProduct,
+    .one `MilnorCertificates.Frobenius, .one `MilnorCertificates.GeneratorEvaluation,
+    .one `MilnorCertificates.FoldEvaluation, .one `MilnorCertificates.Coassociativity,
+    .one `MilnorCertificates.TriangleReindex, .one `MilnorCertificates.IteratedEvaluation,
+    .one `MilnorCertificates.ExponentEncoding, .one `MilnorCertificates.PolynomialExtraction]
 
 lean_lib LinProgramCertificates where
   srcDir := "Lin-program/program"

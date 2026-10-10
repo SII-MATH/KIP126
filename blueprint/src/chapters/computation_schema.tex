@@ -1129,6 +1129,55 @@ mathematical objects and conditions.
   the secondary-associator formula or an Adams differential has been proved.
 \end{definition}
 
+\begin{lemma}[Exact-degree acceleration preserves the original Milnor coefficients]
+  \label{lem:lin-secondary-fast-milnor-checker}
+  \lean{KIP126.Computation.Secondary.degreeBasis_mem,MilnorCertificates.fastCoproduct_value,KIP126.Computation.Secondary.pairTensor_singletons_of_universal_eq,KIP126.Computation.Secondary.pairTensor_fastCoproduct_singletons,KIP126.Computation.Secondary.fastSingletonProductCheck_sound,KIP126.Computation.Secondary.fastSingletonProductCheckWithTable_sound}
+  \uses{def:lin-secondary-native-composition}
+  \leanok
+  For every rank and pair of monomials of that rank, the accelerated
+  singleton-product checker proves the original Milnor product predicate
+  on all monomials of the same rank. It checks the entire exact sum degree;
+  it does not restrict the conclusion to that degree or to a finite window.
+  Wrong arities and terms of a wrong degree are rejected.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Weighted partitions enumerate exactly all monomials of a given degree.
+  Binary powers use the characteristic-two Frobenius identity, with equality
+  proved in the original tensor-polynomial interpretation. Coefficient
+  extraction in its universal polynomial ring reflects this equality back
+  to the original executable singleton-pair coefficients. The existing
+  homogeneous support theorem supplies every other degree. No executable
+  evaluator is trusted as an additional axiom. A shared coproduct table carries
+  a proof that it is exactly the whole ordered degree basis with its original
+  fast coproducts; each product also checks its actual input-degree sum.
+\end{proof}
+
+\begin{lemma}[Certified expansion retains the full native composition]
+  \label{lem:lin-secondary-certified-expansion}
+  \lean{KIP126.Computation.Secondary.expressionEqCheck_sound,KIP126.Computation.Secondary.normalizationCheck_sound,KIP126.Computation.Secondary.expandPaths_sound,KIP126.Computation.Secondary.compose_of_checked_expansion,KIP126.Computation.Secondary.compositionCheck_sound,KIP126.Computation.Secondary.expandCompose_none_of_missing_image,KIP126.Computation.Secondary.expandCompose_none_of_missing_product,KIP126.Computation.Secondary.indexedCompositionCheck_sound,KIP126.Computation.Secondary.normalizeExpression_sound}
+  \uses{def:lin-secondary-native-composition,lem:lin-secondary-fast-milnor-checker}
+  \leanok
+  Given sound product witnesses for the resolved paths, a checked finite
+  expansion proves equality with the original composition at every target
+  generator and every monomial of the original rank. Parity comparison on
+  the union of the complete supports implies equality on all coefficients.
+  A missing intermediate image or product remains failure, even when other
+  terms cancel. An explicitly supplied zero product still needs its product
+  proof. These are generic checking theorems; certification of the entire
+  fixed 96-row input and comparison with the actual sphere remain separate.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Resolve the original paths, expand each by its original all-monomial
+  product theorem, and sum coefficients in $\mathbb F_2$. Outside both
+  finite supports the coefficients vanish. Induction retains failure of
+  any required lookup, before parity normalization. Indexed plans must match
+  the entire original resolved path list. Sorting is proved to be a permutation
+  and adjacent pair cancellation preserves coefficients, so normalization
+  introduces no sorting-correctness assumption.
+\end{proof}
+
 \begin{proposition}[Three closed coefficient identities in the seed 5487 input]
   \label{prop:lin-secondary-5487-selected-equalities}
   \lean{KIP126.Computation.Secondary.Seed5487.row1048577_d_squared,KIP126.Computation.Secondary.Seed5487.row1572866_d_f,KIP126.Computation.Secondary.Seed5487.row3145729_d_f}
