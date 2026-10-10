@@ -708,7 +708,7 @@ nor a t-structure detecting its bounds from homotopy groups.
 
 \begin{proposition}[Reconstructing the same complete tensor shift structures]
   \label{prop:h6-adjoint-tensor-shift-reconstruction}
-  \lean{KIP126.StableHomotopy.TensorShift.leftShift_eq_adjoint,KIP126.StableHomotopy.TensorShift.commShift_ofIso_roundtrip,KIP126.Foundation.TensorInput.leftShift_eq_adjoint,KIP126.Foundation.TensorInput.rightShift_eq_adjoint}
+  \lean{KIP126.StableHomotopy.TensorShift.leftShift_eq_adjoint,KIP126.StableHomotopy.TensorShift.commShift_ofIso_roundtrip,KIP126.Foundation.TensorInput.leftShift_eq_adjoint,KIP126.Foundation.TensorInput.rightShift_eq_adjoint,KIP126.Foundation.TensorInput.rightShift_eq_rightIhomAdjunction,KIP126.Foundation.TensorInput.rightIhomAdjunction_commShift,KIP126.Foundation.TensorInput.rightEvaluation_shift}
   \uses{def:mathlib-shift,def:stage-zero-cooperation-contract}
   \leanok
   For arbitrary categories with integer shifts and an adjunction
@@ -725,6 +725,11 @@ nor a t-structure detecting its bounds from homotopy groups.
   construction. Transport through the same braiding recovers the entire
   original right-tensor shift structure. These equalities retain every
   integer shift and every object; no new input or replacement model is used.
+  The actual braiding also transports the existing closed adjunction to
+  $(-\wedge X)\dashv\operatorname{ihom}(X)$, preserving both original
+  shift structures. Its unit and right evaluation commute with every
+  integer shift, and its adjoint reconstruction equals the entire original
+  right-tensor shift record.
 
   The equalities do not prove naturality in the right tensor parameter
   or compatibility with the associator. Both fields of
@@ -739,6 +744,47 @@ nor a t-structure detecting its bounds from homotopy groups.
   Expanding transport along an isomorphism twice and cancelling its inverse
   proves the roundtrip identity. Apply these results to the existing
   internal-Hom adjunction and the specified left-shift/braiding equality.
+\end{proof}
+
+
+\begin{proposition}[Ordinary tensor mates and the remaining family comparisons]
+  \label{prop:h6-tensor-mates-comparisons}
+  \lean{KIP126.StableHomotopy.TensorShift.conjugate_commShift,KIP126.StableHomotopy.TensorShift.conjugate_symm_commShift,KIP126.StableHomotopy.TensorShift.conjugate_commShift_iff,KIP126.StableHomotopy.TensorShift.ihomTensorIso_hom_app,KIP126.StableHomotopy.TensorShift.rightIhom_parameter_mate,KIP126.StableHomotopy.TensorShift.rightIhomTensorIso_hom,KIP126.Foundation.TensorInput.tensorBraiding_commShift,KIP126.Foundation.TensorInput.ihom_pre_right_commShift_iff,KIP126.Foundation.TensorInput.ihom_curry_commShift_iff,KIP126.Foundation.TensorInput.right_associator_commShift_iff}
+  \uses{prop:h6-adjoint-tensor-shift-reconstruction,prop:h6-braiding-from-tensor-input,def:h6-right-tensor-suspension-compatibility}
+  \leanok
+  For the same adjunctions and chosen integer shifts, the mates bijection
+  preserves and reflects commutation with all shifts. For all objects and
+  maps, the mate of right-tensor parameter change is the original internal-Hom
+  precomposition. The mate of right reassociation is the full natural
+  transformation
+  \[
+    \operatorname{ihom}(X\wedge Y)
+      \xrightarrow{\operatorname{pre}(\beta_{Y,X})}
+    \operatorname{ihom}(Y\wedge X)
+      \xrightarrow{\operatorname{curry}_{Y,X}}
+    \operatorname{ihom}(X,\operatorname{ihom}(Y,-)),
+  \]
+  where curry is the original closed-category currying. This ordinary identity already holds in a
+  braided closed category.
+
+  Consequently, right-parameter shift naturality is equivalent to shift
+  compatibility of internal-Hom precomposition, and all-integer right
+  reassociation compatibility is equivalent to shift compatibility of the
+  displayed composite. These are proved equivalences; neither missing
+  family condition is thereby established. In particular, the two
+  suspension-one conditions of
+  Definition~\ref{def:h6-right-tensor-suspension-compatibility} remain open
+  on the full specified implementation.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Express mates through the same units, counits, whiskering and functor
+  associators, all of which preserve their chosen shift comparisons.
+  For the ordinary right-tensor mate, apply the two actual adjunction
+  hom-set equivalences and then uncurry twice. Naturality and the hexagon
+  identities for the given braiding identify it with the displayed
+  precomposition and ordinary curry, without assuming either family's
+  shift compatibility.
 \end{proof}
 
 \begin{proposition}[Transporting a boundary past a braiding]

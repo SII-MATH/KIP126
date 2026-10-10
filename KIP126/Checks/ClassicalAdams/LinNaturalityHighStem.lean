@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.NaturalityHighStem
+import KIP126.Interface.Solution.LinProgram.Naturality.Row462481
 import Lean.Elab.Command
 
 /-! Native 462481 remains conditional on its actual Ceta differential and
@@ -10,9 +10,9 @@ run_cmd do
   for mod in env.allImportedModuleNames do
     if (`KIP126.Main).isPrefixOf mod ||
         mod == `KIP126.Interface.Solution.Challenge2 ||
-        mod == `KIP126.Interface.Solution.LinProgram.BasisTable ||
+        mod == `KIP126.Interface.Solution.LinProgram.Basis.Certification ||
         mod == `KIP126.Interface.Solution.LinProgram.Multiplication ||
-        mod == `KIP126.Interface.Solution.LinProgram.Differentials ||
+        mod == `KIP126.Interface.Solution.LinProgram.Differentials.VanishingD2 ||
         mod == `KIP126.Interface.Solution.LinProgram.Staircase ||
         mod == `KIP126.Interface.Solution.LinProgram.Route.Certification ||
         mod == `KIP126.LinProgram.Tactic.LinE2 then

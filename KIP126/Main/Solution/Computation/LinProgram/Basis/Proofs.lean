@@ -1,5 +1,5 @@
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Data
-import KIP126.LinProgram.Certificates.BasisTable.Predicates
+import KIP126.LinProgram.Certificates.BasisCertification.Predicates
 import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
 
 /-! The original basis properties, now consequences of the delivered actual

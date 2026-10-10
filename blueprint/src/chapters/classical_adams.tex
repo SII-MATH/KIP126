@@ -228,12 +228,17 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 \begin{theorem}[Coefficient Ext comparison with prescribed representatives]
   \label{thm:milnor-coefficient-module-comparison}
   \lean{KIP126.Steenrod.Milnor.Module.dualCobarResolution}
+  \lean{KIP126.Steenrod.Milnor.Module.dualLeftMap_comp,KIP126.Steenrod.Milnor.Module.dualLeftMap_zero,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_shape,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_comp,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_augmentation}
   \lean{KIP126.Steenrod.Milnor.Module.PreservesDualCobarRepresentatives,KIP126.Steenrod.Milnor.Module.exists_dualCobarComparison}
   \uses{def:milnor-cofree-resolution,def:milnor-derived-ext,def:milnor-contravariant-dualization}
   Given a prescribed cofree resolution $R$, form the actual chain complex
   $P_s=D(R^s)$ with differential $D(d_R)$ and augmentation $D(\iota_R)$
-  followed by $D(k[0])\cong k[0]$. Its projectivity and resolution
-  properties remain proof obligations for these specified terms and maps.
+  followed by $D(k[0])\cong k[0]$. Reversal of composition and preservation
+  of zero by the specified transpose now prove the chain-shape, square-zero
+  and augmentation identities for these exact maps. These local proofs still
+  inherit the unfinished antipode, action and coefficient-dual constructions;
+  the whole comparison is not marked proved. Projectivity and resolution
+  exactness remain obligations for these specified terms and maps.
   There exists a family of linear equivalences
   \[
     e_{s,t}:\operatorname{Ext}_C^s(k[t],k)

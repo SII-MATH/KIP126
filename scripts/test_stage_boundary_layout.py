@@ -160,7 +160,7 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         # into Def or duplicating it in Main. LinProofs/LinSelected's compiled
         # proof-value audits additionally reject total-results constants AND
         # inline projections; all other producer imports remain forbidden.
-        reusable = {"KIP126.Interface.Solution.LinProgram.OneLineH6"}
+        reusable = {"KIP126.Interface.Solution.LinProgram.AdamsOneLine.H6"}
         for module in self.graph:
             if module.startswith("KIP126.Main.Solution.Computation."):
                 forbidden = [m for m in self.dependencies(module)

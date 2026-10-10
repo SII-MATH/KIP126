@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Certificates.NaturalityHighStemProducts
+import KIP126.LinProgram.Certificates.Products.Naturality462481
 import Lean.Elab.Command
 
 open Lean Elab Command in

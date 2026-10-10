@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Model.BasisTable.Data
+import KIP126.LinProgram.Model.BasisCatalogue.Data
 import KIP126.LinProgram.Certificates.SquareDetection.Certificate
 /-! Certify success and row membership for the original strict CSV parser.
 These facts do not assert linear independence, spanning, or sphere comparison. -/

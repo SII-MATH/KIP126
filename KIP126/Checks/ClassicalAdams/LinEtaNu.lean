@@ -19,10 +19,10 @@ private def forbiddenModules : List Name :=
   [`KIP126.Main,
     `KIP126.Interface.Challenge.Challenge2,
     `KIP126.Interface.Solution.Challenge2,
-    `KIP126.Interface.Solution.LinProgram.BasisTable,
-    `KIP126.Interface.Solution.LinProgram.SphereBasis,
+    `KIP126.Interface.Solution.LinProgram.Basis.Certification,
+    `KIP126.Interface.Solution.LinProgram.Basis.Comparison,
     `KIP126.Interface.Solution.LinProgram.Multiplication,
-    `KIP126.Interface.Solution.LinProgram.Differentials,
+    `KIP126.Interface.Solution.LinProgram.Differentials.VanishingD2,
     `KIP126.Interface.Solution.LinProgram.Staircase,
     `KIP126.Interface.Solution.LinProgram.Route.Certification,
     `KIP126.LinProgram.Tactic.LinE2]

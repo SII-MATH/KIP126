@@ -1,3 +1,4 @@
+import KIP126.Def.Algebra.TwoElement.Proofs
 import KIP126.Def.Algebra.GradedComodule.Ext.Data
 import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Proofs
 import KIP126.Def.Algebra.GradedDual.Data

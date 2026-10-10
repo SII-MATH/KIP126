@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.NaturalityCW
+import KIP126.Interface.Solution.LinProgram.Naturality.CWToCeta
 import Lean.Elab.Command
 
 /-! These are checks of the conditional producer's compiled dependencies.
@@ -10,10 +10,10 @@ open Lean Elab Command
 private def forbiddenModules : List Name :=
   [`KIP126.Main,
     `KIP126.Interface.Solution.Challenge2,
-    `KIP126.Interface.Solution.LinProgram.BasisTable,
-    `KIP126.Interface.Solution.LinProgram.SphereBasis,
+    `KIP126.Interface.Solution.LinProgram.Basis.Certification,
+    `KIP126.Interface.Solution.LinProgram.Basis.Comparison,
     `KIP126.Interface.Solution.LinProgram.Multiplication,
-    `KIP126.Interface.Solution.LinProgram.Differentials,
+    `KIP126.Interface.Solution.LinProgram.Differentials.VanishingD2,
     `KIP126.Interface.Solution.LinProgram.Staircase,
     `KIP126.Interface.Solution.LinProgram.Route.Certification,
     `KIP126.LinProgram.Tactic.LinE2]
@@ -54,7 +54,8 @@ private def checkValueClosure (root : Name) (required : List Name) : CommandElab
       | none => name
     unless (`KIP126).isPrefixOf owner do continue
     if let some value := info.value? (allowOpaque := true) then
-      if (`KIP126.Interface.Solution.LinProgram.NaturalityCW).isPrefixOf owner &&
+      if (owner == `KIP126.Interface.Solution.LinProgram.Naturality.CWToCeta ||
+          owner == `KIP126.Interface.Solution.LinProgram.Naturality.CWModel) &&
           value.getUsedConstants.contains ``sorryAx then
         throwError "CW replay introduces a fresh placeholder: {root}: {name}"
       if (value.find? fun e => match e with

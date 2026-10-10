@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.NaturalityCoordinates
+import KIP126.Interface.Solution.LinProgram.Naturality.Row245131Coordinates
 import Lean.Elab.Command
 
 /-! The native data and literal coordinate certificates are closed, even
@@ -9,7 +9,7 @@ run_cmd do
   for mod in env.allImportedModuleNames do
     if (`KIP126.Main).isPrefixOf mod ||
         mod == `KIP126.Interface.Solution.Challenge2 ||
-        mod == `KIP126.Interface.Solution.LinProgram.BasisTable ||
+        mod == `KIP126.Interface.Solution.LinProgram.Basis.Certification ||
         mod == `KIP126.LinProgram.Tactic.LinE2 then
       throwError "native coordinate certificate imported a delivery or assumed basis: {mod}"
   let logical := [``propext, ``Classical.choice, ``Quot.sound]

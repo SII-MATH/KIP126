@@ -2,7 +2,7 @@ import KIP126.Def.SpectralSequence.Computation.State.Predicates
 import KIP126.Def.StageInput.StandardSphere.Sequence.Data
 import KIP126.Def.StageInput.StandardSphere.Classes.Data
 import KIP126.LinProgram.Model.Classes.Data
-import KIP126.LinProgram.Certificates.BasisTable.Predicates
+import KIP126.LinProgram.Certificates.BasisCertification.Predicates
 import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
 import KIP126.Def.ClassicalAdams.Suspension.Predicates
 import KIP126.LinProgram.Generated.Differentials.Table

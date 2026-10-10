@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Certificates.ReplayProducts
+import KIP126.LinProgram.Certificates.Products.Trial152097
 import Lean.Elab.Command
 
 /-! The actual fixed-data quotient products are closed proofs. These checks

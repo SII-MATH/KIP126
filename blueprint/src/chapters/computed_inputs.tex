@@ -355,8 +355,9 @@ incoming boundaries and does not imply nonzero permanent survival.
 \begin{theorem}[The interpreted fixed square is nonzero on the actual second page]
   \label{thm:computation-sphereSquare-nonzero}
   \lean{KIP126.Challenge2.SphereSquareInterface.nonzero,KIP126.Challenge2.ComputationResults.sphereSquare}
+  \lean{KIP126.Interface.Solution.sphereSquare}
   \notready
-  \uses{def:computation-fixed-bindings}
+  \uses{def:computation-fixed-bindings,thm:lin-square-certified}
   In the actual fixed sphere second page,
   \[
     P_{2,128}(\mathrm{LinE2.dataH6Sq})\ne0
@@ -368,8 +369,9 @@ incoming boundaries and does not imply nonzero permanent survival.
 \begin{theorem}[The interpreted fixed square exhausts the nonzero square-degree component]
   \label{thm:computation-sphereSquare-exhaustive}
   \lean{KIP126.Challenge2.SphereSquareInterface.exhaustive,KIP126.Challenge2.ComputationResults.sphereSquare}
+  \lean{KIP126.Interface.Solution.sphereSquare}
   \notready
-  \uses{def:computation-fixed-bindings}
+  \uses{def:computation-fixed-bindings,prop:lin-square-component-two-elements,lem:lin-singleton-exhaustion-transport}
   For every $x\in E_2^{2,128}(S^0)$,
   \[
     x=0\quad\lor\quad x=P_{2,128}(\mathrm{LinE2.dataH6Sq}).
@@ -381,8 +383,9 @@ incoming boundaries and does not imply nonzero permanent survival.
 \begin{theorem}[The interpreted fixed square has the standard Milnor label]
   \label{thm:computation-sphereSquare-standard-class}
   \lean{KIP126.Challenge2.SphereSquareInterface.standard_class,KIP126.Challenge2.ComputationResults.sphereSquare}
+  \lean{KIP126.Interface.Solution.sphereSquare}
   \notready
-  \uses{def:computation-fixed-bindings}
+  \uses{def:computation-fixed-bindings,prop:lin-square-component-two-elements,lem:lin-singleton-exhaustion-transport,prop:h6-fixed-standard-square-nonzero}
   On the same actual sphere second page,
   \[
     P_{2,128}(\mathrm{LinE2.dataH6Sq})

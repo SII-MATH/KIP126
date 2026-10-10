@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.OneLine
+import KIP126.Interface.Solution.LinProgram.AdamsOneLine.H4
 import Lean.Elab.Command
 
 /-! A nonzero actual-sphere producer slice, independent of the consumer
@@ -11,12 +11,16 @@ run_cmd do
   for mod in env.allImportedModuleNames do
     if (`KIP126.Main).isPrefixOf mod ||
         mod == `KIP126.Interface.Solution.Challenge2 ||
-        mod == `KIP126.Interface.Solution.LinProgram.BasisTable ||
+        mod == `KIP126.Interface.Solution.LinProgram.Basis.Certification ||
         mod == `KIP126.Interface.Solution.LinProgram.Multiplication ||
         mod == `KIP126.Interface.Solution.AdamsOneLine then
       throwError "one-line producer imported a consumer or admitted result: {mod}"
   let logical := [``propext, ``Classical.choice, ``Quot.sound]
-  for decl in [``KIP126.Classical.Adams.MilnorCohomology.hiCochain_ne_zero,
+  for decl in [``KIP126.Core.Algebra.eq_zero_or_of_span_singleton,
+      ``KIP126.Core.Algebra.LinearEquiv.zero_or_of_exhaustion,
+      ``KIP126.Core.Algebra.LinearEquiv.image_eq_of_exhaustion,
+      ``KIP126.LinE2.E2At_eq_zero_or_of_span,
+      ``KIP126.Classical.Adams.MilnorCohomology.hiCochain_ne_zero,
       ``KIP126.Classical.Adams.MilnorCohomology.hi_ne_zero,
       ``KIP126.Classical.Adams.MilnorCohomology.internal_hi_ne_zero,
       ``KIP126.LinE2.OneLine.E2At_h4_eq_zero_or,

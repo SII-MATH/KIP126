@@ -53,5 +53,53 @@ theorem commShift_ofIso_roundtrip {C : Type u₁} {D : Type u₂}
     ← Functor.map_comp, Iso.inv_hom_id_app]
   rw [(shiftFunctor D a).map_id, Category.comp_id]
 
+section Mates
+variable {C : Type u₁} {D : Type u₂} [Category.{v₁} C] [Category.{v₂} D]
+  [HasShift C ℤ] [HasShift D ℤ]
+  {L₁ L₂ : C ⥤ D} {R₁ R₂ : D ⥤ C}
+  (adj₁ : L₁ ⊣ R₁) (adj₂ : L₂ ⊣ R₂)
+  [L₁.CommShift ℤ] [R₁.CommShift ℤ] [L₂.CommShift ℤ] [R₂.CommShift ℤ]
+  [adj₁.CommShift ℤ] [adj₂.CommShift ℤ]
+
+/-- Mates preserve the compatibility of the same chosen integer shifts. -/
+theorem conjugate_commShift (α : L₂ ⟶ L₁) [NatTrans.CommShift α ℤ] :
+    NatTrans.CommShift (conjugateEquiv adj₁ adj₂ α) ℤ := by
+  have h : conjugateEquiv adj₁ adj₂ α =
+      R₁.rightUnitor.inv ≫ Functor.whiskerLeft R₁ adj₂.unit ≫
+      (Functor.associator R₁ L₂ R₂).inv ≫
+      Functor.whiskerRight (Functor.whiskerLeft R₁ α) R₂ ≫
+      Functor.whiskerRight adj₁.counit R₂ ≫ R₂.leftUnitor.hom := by
+    ext X
+    simp
+  rw [h]
+  infer_instance
+
+/-- The reverse mates correspondence also preserves the same shifts. -/
+theorem conjugate_symm_commShift (β : R₁ ⟶ R₂) [NatTrans.CommShift β ℤ] :
+    NatTrans.CommShift ((conjugateEquiv adj₁ adj₂).symm β) ℤ := by
+  have h : (conjugateEquiv adj₁ adj₂).symm β =
+      L₂.leftUnitor.inv ≫ Functor.whiskerRight adj₁.unit L₂ ≫
+      Functor.whiskerRight (Functor.whiskerLeft L₁ β) L₂ ≫
+      (Functor.associator L₁ R₂ L₂).hom ≫
+      Functor.whiskerLeft L₁ adj₂.counit ≫ L₁.rightUnitor.hom := by
+    ext X
+    simp
+  rw [h]
+  infer_instance
+
+/-- Full integer compatibility is equivalent on the two sides of adjunction. -/
+theorem conjugate_commShift_iff (α : L₂ ⟶ L₁) :
+    NatTrans.CommShift (conjugateEquiv adj₁ adj₂ α) ℤ ↔ NatTrans.CommShift α ℤ := by
+  constructor
+  · intro h
+    letI := h
+    have hh := conjugate_symm_commShift adj₁ adj₂ (conjugateEquiv adj₁ adj₂ α)
+    simpa only [Equiv.symm_apply_apply] using hh
+  · intro h
+    letI := h
+    exact conjugate_commShift adj₁ adj₂ α
+
+end Mates
+
 end
 end KIP126.StableHomotopy.TensorShift

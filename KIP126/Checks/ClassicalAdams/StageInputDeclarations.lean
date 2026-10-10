@@ -1,7 +1,7 @@
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Interface.Solution.Literature.Applications
 import KIP126.Interface.Solution.Challenge2
-import KIP126.Interface.Solution.LinProgram.BasisTable
+import KIP126.Interface.Solution.LinProgram.Basis.Certification
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
 import KIP126.Def.StageInput.Milnor
 import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs

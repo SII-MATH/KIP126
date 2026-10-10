@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.Naturality
+import KIP126.Interface.Solution.LinProgram.Naturality.Row245131
 import Lean.Elab.Command
 
 /-! A replay on the fixed η cofiber and its actual top-cell map. The native
@@ -13,9 +13,9 @@ run_cmd do
   for mod in env.allImportedModuleNames do
     if (`KIP126.Main).isPrefixOf mod ||
         mod == `KIP126.Interface.Solution.Challenge2 ||
-        mod == `KIP126.Interface.Solution.LinProgram.BasisTable ||
+        mod == `KIP126.Interface.Solution.LinProgram.Basis.Certification ||
         mod == `KIP126.Interface.Solution.LinProgram.Multiplication ||
-        mod == `KIP126.Interface.Solution.LinProgram.Differentials ||
+        mod == `KIP126.Interface.Solution.LinProgram.Differentials.VanishingD2 ||
         mod == `KIP126.Interface.Solution.LinProgram.Staircase ||
         mod == `KIP126.Interface.Solution.LinProgram.Route.Certification then
       throwError "naturality replay imported a consumer or aggregate certification: {mod}"

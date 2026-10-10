@@ -66,7 +66,7 @@ lake build KIP126.Checks.AdamsE2.LinReplayProducts
 
 ```sh
 lake build KIP126.Checks.AdamsE2.LinReplayCoordinates \
-  KIP126.Interface.Solution.LinProgram.ReplayProducts
+  KIP126.Interface.Solution.LinProgram.Products.Trial152097
 ```
 
 ## 真实自然性日志的条件传输
@@ -285,7 +285,7 @@ lake build KIP126.Checks.ClassicalAdams.LinReplayStagePairing
 
 `row5541` 给出原生日志完整的 `DifferentialStatement P ⟨5541,"d2",1,64,2,[0],[0]⟩`；`row5541_rejects_zero` 排除把目标改为零向量。两条 Main 消费者 `Computation.LinProofs.row5541` 与 `Selected.d2_h6` 保持原有完整类型，改用同一直接 witness 投影得到的 `StageInput.literature` 和 `StageInput.computation.bindings.presentation`。一般整表定理及其全部量词保留；另外五条选定行仍使用原有整表交付。
 
-这一路径明确依赖已有 one-line 文献输入，未重放 Lin 的 secondary 算法。实际模型的已有 `sorryAx` 仍在，因此只标为条件实际结果；数据坐标证书本身已闭合。生产端不导入 Main 或待构造总交付。消费者审计沿证明值检查常量和内联结构投影，禁止读取 `ComputationInterface.results`、`ComputationResults` 及整表认证。 原布局检查按路径禁止全部 LinProgram producer 复用；为这次具体迁移，只开放 `Interface.Solution.LinProgram.OneLineH6` 一个完全参数化模块，其余 producer 与总交付仍禁止导入，逆向 Main 依赖禁令保留。这样实际模型证书继续由 Interface 持有，Main 以同一 witness 的显式输入复用；不把实现挪入 Challenge/Def 或复制证明。18 项布局检查通过，编译后的证明值/投影审计负责进一步约束这一精确例外。
+这一路径明确依赖已有 one-line 文献输入，未重放 Lin 的 secondary 算法。实际模型的已有 `sorryAx` 仍在，因此只标为条件实际结果；数据坐标证书本身已闭合。生产端不导入 Main 或待构造总交付。消费者审计沿证明值检查常量和内联结构投影，禁止读取 `ComputationInterface.results`、`ComputationResults` 及整表认证。 原布局检查按路径禁止全部 LinProgram producer 复用；为这次具体迁移，只开放 `Interface.Solution.LinProgram.AdamsOneLine.H6` 一个完全参数化模块，其余 producer 与总交付仍禁止导入，逆向 Main 依赖禁令保留。这样实际模型证书继续由 Interface 持有，Main 以同一 witness 的显式输入复用；不把实现挪入 Challenge/Def 或复制证明。18 项布局检查通过，编译后的证明值/投影审计负责进一步约束这一精确例外。
 
 ```sh
 python3 KIP126/LinProgram/Translate/import-selected.py --check
@@ -592,7 +592,7 @@ lake build KIP126.Checks.AdamsE2.LinReplayProducts \
   KIP126.Checks.AdamsE2.LinReplayCoordinates \
   KIP126.Checks.AdamsE2.LinNaturalityCoordinates \
   KIP126.Checks.ClassicalAdams.LinSuspensionReplay \
-  KIP126.Interface.Solution.LinProgram.ReplayProducts \
+  KIP126.Interface.Solution.LinProgram.Products.Trial152097 \
   KIP126.Checks.ClassicalAdams.LinNaturalityReplay \
   KIP126.Checks.ClassicalAdams.LinReplayRules \
   KIP126.Checks.ClassicalAdams.LinLowStemProducer \
@@ -641,3 +641,81 @@ git diff --check
 为后续有限链等式直接复用原有 Milnor 核，首批在根 Lake 注册了所需非默认模块，未复制数学主体或纳入旧项目的全部生成批次。`MilnorCertificates.StableProduct` 已正式构建，打印的乘法/秩稳定性定理只有标准逻辑公理。
 
 本批新增的完整原生分支商、E3 条件运输、462481 条件重放、5541 消费者迁移、第三条 secondary 等式和通用余纤维延拓，均已有正式构建及 Blueprint 声明核验。独立复核确认没有缩小量词、删除剩余前提或读取待构造总交付；实际模型的未完成数学义务仍如上记录。
+
+
+## Module organization and shared exhaustion (2026-10-10)
+
+The 27 module moves and module navigation are recorded in
+`KIP126/LinProgram/README.md`. Public Lean names and complete public statement
+headers remain unchanged. The former OneLine source/target names are now grouped
+by AdamsOneLine, Hopf, Products and Naturality; basis catalogue, certification and
+fixed-model transport are separately named. Generic singleton-span and linear
+comparison arguments live in `Def/Algebra/TwoElement/Proofs.lean`, and the six
+original degree components and their fixed-model identifications reuse them.
+No source, basis, comparison, nonzero or differential premise is weakened.
+Historical trace bytes and frozen full-replay producers are unchanged.
+
+### Validation of the organization change
+
+The 27 migrated modules and the two square-proof modules retain all original
+public statement headers. The first compiled API comparison covers 255
+non-internal declarations: every mathematical type and axiom set is unchanged.
+Ten generated constructor/parser auxiliaries have different hygienic bound
+variable names because their owning file moved; a Lean expression comparison
+ignoring only binder names verifies the rest of each type exactly. The square
+API snapshot contributes eight declarations (one already in the first snapshot).
+The final comparison covers 262 distinct declarations, with no missing or added
+names, no mathematical type changes and no axiom-set changes. Explicit
+normalization of `dataH6Sq` preserves its previously generated `dataH6Sq.eq_1`
+equation lemma, whose disappearance was detected by this comparison.
+
+The following checks have passed for this change: 140 existing Python tests
+(stage boundaries 18, Blueprint frontier 15, external inputs 51, source inventory
+22, augmentation 16, native contract 16, certified replay 2); source inventory
+(26 sources, 121 artifacts); external-input static field/declaration checks;
+Blueprint active dependency parsing and web rendering; source checks for both
+square-proof modules; and compiled generated replays for native rows 5432 and
+5434. The two replay proofs still report the existing fixed-model `sorryAx`.
+Frozen generation input hashes, canonical input manifest and historical trace
+bytes are unchanged. No new actual certification is claimed.
+
+The complete root build and all 15 targeted Lean audits pass (4974 jobs),
+including the final incrementally rebuilt square modules and root export.
+The post-rebuild API comparison, external-input Lean check, complete
+`lake exe checkdecls blueprint/lean_decls` run and `git diff --check` pass.
+The original large Route/AlphaOne consumer recompilations account for most of
+the verification time. This records interface and organization preservation;
+it does not certify the still-unfinished actual-model comparison or foundation.
+
+The current replay entry points are:
+
+```sh
+lake build +KIP126:olean
+lake build KIP126.Checks.ClassicalAdams.LinOneLineProducer \
+  KIP126.Checks.ClassicalAdams.LinH6OneLineProducer \
+  KIP126.Checks.ClassicalAdams.LinH1Producer \
+  KIP126.Checks.ClassicalAdams.LinLowStemProducer \
+  KIP126.Checks.ClassicalAdams.LinNaturalityReplay \
+  KIP126.Checks.ClassicalAdams.LinNaturalityHighStem \
+  KIP126.Checks.ClassicalAdams.LinNaturalityCW \
+  KIP126.Checks.ClassicalAdams.LinEtaNu \
+  KIP126.Checks.ClassicalAdams.LinProofs \
+  KIP126.Checks.ClassicalAdams.LinSelected \
+  KIP126.Checks.AdamsE2.LinReplayProducts \
+  KIP126.Checks.AdamsE2.LinReplayCoordinates \
+  KIP126.Checks.AdamsE2.LinNaturalityCoordinates \
+  KIP126.Checks.AdamsE2.LinNaturalityHighStemProducts \
+  KIP126.Checks.AdamsE2.LinNaturalityModuleProducts
+python3 -B KIP126/LinProgram/Translate/replay-certified.py --row 5432 --output-dir /tmp/lin-organization-row5432
+lake env lean --root=/tmp /tmp/lin-organization-row5432/GeneratedReplay.lean
+python3 -B KIP126/LinProgram/Translate/replay-certified.py --row 5434 --output-dir /tmp/lin-organization-row5434
+lake env lean --root=/tmp /tmp/lin-organization-row5434/GeneratedReplay.lean
+python3 -B scripts/test_stage_boundary_layout.py
+python3 -B scripts/check_source_inventory.py
+python3 -B scripts/check_external_inputs.py --lean-check /tmp/lin-organization-external.lean
+lake env lean --root=/tmp /tmp/lin-organization-external.lean
+python3 -B scripts/blueprint_frontier.py --output-dir /tmp/lin-organization-frontier
+leanblueprint web
+lake exe checkdecls blueprint/lean_decls
+git diff --check
+```

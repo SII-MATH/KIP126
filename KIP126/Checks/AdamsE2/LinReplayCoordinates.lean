@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Certificates.ReplayCoordinates
+import KIP126.LinProgram.Certificates.Products.Trial152097Coordinates
 import Lean.Elab.Command
 
 /-! The typed native coordinate bridge must retain the closed data-algebra

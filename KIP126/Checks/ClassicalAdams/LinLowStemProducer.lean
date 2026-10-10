@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.Differentials
+import KIP126.Interface.Solution.LinProgram.Differentials.VanishingD2
 import Lean.Elab.Command
 import KIP126.LinProgram.Tactic.LinBasisLine
 
@@ -11,7 +11,7 @@ run_cmd do
   for mod in env.allImportedModuleNames do
     if (`KIP126.Main).isPrefixOf mod ||
         mod == `KIP126.Interface.Solution.Challenge2 ||
-        mod == `KIP126.Interface.Solution.LinProgram.BasisTable then
+        mod == `KIP126.Interface.Solution.LinProgram.Basis.Certification then
       throwError "low-stem producer imported a consumer or admitted certificate: {mod}"
   let logical := [``propext, ``Classical.choice, ``Quot.sound]
   for decl in [``KIP126.Core.SpectralSequence.RepresentsOnPage.self_two,

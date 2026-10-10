@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Certificates.NaturalityModuleProducts
+import KIP126.LinProgram.Certificates.Products.Naturality462481Modules
 import Lean.Elab.Command
 
 /-! Full native module quotient certificates have no actual-model delivery

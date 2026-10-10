@@ -11,8 +11,8 @@ import KIP126.Interface.Solution.AdamsOneLine
 import KIP126.Interface.Solution.Moss
 import KIP126.Def.Comparison.PageExtension.Solutions.Finiteness.Proofs
 import KIP126.Def.Comparison.PageExtension.Solutions.Coherence.Proofs
-import KIP126.Interface.Solution.LinProgram.BasisTable
-import KIP126.Interface.Solution.LinProgram.SphereBasis
+import KIP126.Interface.Solution.LinProgram.Basis.Certification
+import KIP126.Interface.Solution.LinProgram.Basis.Comparison
 import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch0
 import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch1
 import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch2

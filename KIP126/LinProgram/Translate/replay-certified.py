@@ -62,8 +62,8 @@ def main():
         return "[" + ", ".join(map(str, values)) + "]"
     literal = (f'⟨{row["id"]}, "d2", {row["s"]}, {row["t"]}, {row["r"]}, '
                f'{vector(equation[3])}, {vector(equation[4])}⟩')
-    lean = f'''import KIP126.Interface.Solution.LinProgram.Differentials
-import KIP126.Interface.Solution.LinProgram.OneLine
+    lean = f'''import KIP126.Interface.Solution.LinProgram.Differentials.VanishingD2
+import KIP126.Interface.Solution.LinProgram.AdamsOneLine.H4
 
 -- Generated actual-object statement. Explicit literature/presentation inputs
 -- and the fixed Def model's existing foundational proof debt are retained.

@@ -1073,10 +1073,32 @@ mathematical objects and conditions.
   actual candidate coverage has not been asserted.
 \end{proof}
 
+
+\begin{lemma}[Singleton-span exhaustion and its comparison transport]
+  \label{lem:lin-singleton-exhaustion-transport}
+  \lean{KIP126.Core.Algebra.eq_zero_or_of_span_singleton,KIP126.Core.Algebra.LinearEquiv.zero_or_of_exhaustion,KIP126.Core.Algebra.LinearEquiv.image_eq_of_exhaustion,KIP126.LinE2.E2At_eq_zero_or_of_span}
+  \uses{def:core-f2,def:lin-e2-catalogue}
+  \leanok
+  Every vector in the span of one specified vector over $\mathbb F_2$ is
+  zero or that vector. Over any semiring, a linear equivalence transports
+  exhaustion by zero and one specified vector and identifies every
+  independently specified nonzero target vector with its image.
+  The homogeneous-data specialization requires the entire component to
+  equal the singleton span; it does not assume catalogue completeness.
+\end{lemma}
+\begin{proof}
+  \leanok
+  A scalar in $\mathbb F_2$ is zero or one. Surjectivity transports the two
+  alternatives; independent nonvanishing excludes the zero alternative.
+  The same lemmas are reused by the original $h_1$, $h_4$, $h_0h_3^2$,
+  $h_6$, $h_0h_5^2$ and $h_6^2$ certificates, preserving all original statements.
+  They supply neither a fixed presentation nor its actual product comparison.
+\end{proof}
+
 \begin{lemma}[Independent coordinates for native row 5541]
   \label{lem:lin-h6-one-line-coordinate-certificate}
   \lean{KIP126.LinE2.OneLineH6.source_monomial_unique,KIP126.LinE2.OneLineH6.target_monomial_unique,KIP126.LinE2.OneLineH6.source_span,KIP126.LinE2.OneLineH6.target_span,KIP126.LinE2.OneLineH6.source_eq_zero_or,KIP126.LinE2.OneLineH6.target_eq_zero_or,KIP126.LinE2.OneLineH6.source_value,KIP126.LinE2.OneLineH6.target_value}
-  \uses{def:lin-e2-catalogue}
+  \uses{def:lin-e2-catalogue,lem:lin-singleton-exhaustion-transport}
   \leanok
   In the fixed 2914-generator quotient, every homogeneous element of
   degree $(1,64)$ is zero or the native class $x_{69}$, and every element
@@ -1096,7 +1118,7 @@ mathematical objects and conditions.
 \begin{proposition}[The one-line source supplies native row 5541]
   \label{prop:lin-h6-one-line-producer}
   \lean{KIP126.Interface.Solution.LinProgram.row5541_hasNonzeroDifferential,KIP126.Interface.Solution.LinProgram.row5541_rejects_zero,KIP126.Interface.Solution.LinProgram.row5541,KIP126.Computation.LinProofs.row5541,KIP126.Computation.LinProofs.Selected.d2_h6}
-  \uses{lem:lin-h6-one-line-coordinate-certificate,thm:external-adams-one-line,def:computation-fixed-bindings,def:lin-proofs-sphere-meaning}
+  \uses{lem:lin-singleton-exhaustion-transport,lem:lin-h6-one-line-coordinate-certificate,thm:external-adams-one-line,def:computation-fixed-bindings,def:lin-proofs-sphere-meaning}
   \notready
   The original record is $d_2:(1,64)[0]\to(3,65)[0]$, with reason
   \texttt{d2}. Instantiate the retained one-line literature theorem at
@@ -1176,6 +1198,62 @@ mathematical objects and conditions.
   the entire original resolved path list. Sorting is proved to be a permutation
   and adjacent pair cancellation preserves coefficients, so normalization
   introduces no sorting-correctness assumption.
+\end{proof}
+
+\begin{lemma}[Augmentation of the original native coefficient semantics]
+  \label{lem:lin-secondary-augmentation}
+  \lean{KIP126.Computation.Secondary.coproduct_unit,KIP126.Computation.Secondary.product_augmentation,KIP126.Computation.Secondary.augmentationTerms,KIP126.Computation.Secondary.augmentationTerms_coefficient,KIP126.Computation.Secondary.compose_augmentation,KIP126.Computation.Secondary.augmentation_eq_of_terms}
+  \uses{def:lin-secondary-native-composition,lem:lin-secondary-certified-expansion}
+  \leanok
+  For every original rank, taking the coefficient of the all-zero Milnor
+  monomial is multiplicative for the original all-monomial product predicate.
+  For a module expression, filtering its unit terms and retaining their
+  generator indices gives exactly this augmented coefficient at every target;
+  repeated indices retain their parity. Augmentation of the original partial
+  composition is the parity sum of paths whose two factors are units.
+  Every original path must still resolve before this sum is formed, even
+  when a missing nonunit term would have zero augmentation.
+\end{lemma}
+\begin{proof}
+  \leanok
+  The original coproduct sends the unit to its single pair of unit factors.
+  Evaluation proves multiplicativity. Commuting the two finite filters
+  identifies module coefficients, and induction on the complete resolved
+  path list proves compatibility with composition. Thus an independently
+  checked equality with a recorded generator list identifies its augmented
+  coefficients. This does not prove a secondary associator formula,
+  exactness or minimality of a resolution, or the actual sphere differential.
+\end{proof}
+
+\begin{lemma}[Native contraction is dual to the original monomial multiplication]
+  \label{lem:lin-secondary-contraction}
+  \lean{KIP126.Computation.Secondary.contractMonomial_eq_some,KIP126.Computation.Secondary.contractMonomial_eq_none_iff,KIP126.Computation.Secondary.contractPolynomial_coefficient,KIP126.Computation.Secondary.contractPolynomial_twice_coefficient,KIP126.Computation.Secondary.contractPolynomial_xi_zero_coefficient,KIP126.Computation.Secondary.contractModuleExpression_coefficient,KIP126.Computation.Secondary.contractMonomial_weight,KIP126.Computation.Secondary.outerContraction_eq_none_of_weight_lt}
+  \uses{def:lin-secondary-native-composition,lem:lin-secondary-certified-expansion}
+  \leanok
+  At every original rank, coordinate subtraction by a dual monomial $a$
+  succeeds with output $b$ exactly when the original monomial product
+  $ab$ is the input; a rank mismatch or impossible subtraction is rejected.
+  Its linear extension satisfies
+  \[
+    [b]C(a,p)=[ab]p
+  \]
+  at every monomial $b$ of that rank. The same identity holds at every
+  target generator of a module expression. Two contractions compose by
+  multiplying their dual factors, and contraction by $\xi_0^e=1$ is the
+  identity. Successful contraction removes exactly the factor's weight.
+  In the native second associator sum, its first factor
+  $\xi_{m-k}^{2^k}$ has weight at least $2^{m-1}$ for $k<m\le r$;
+  a smaller-weight input therefore contributes zero.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Induction on the original coordinate lists proves the subtraction
+  characterization. Parity of the filtered complete polynomial or module
+  expression gives the coefficient identities, including cancellation of
+  repeated terms. Additivity of the original Milnor weight proves the
+  degree obstruction and the stated exponential lower bound. These are
+  components of the independent associator formula; the mod-four lift,
+  division by two and complete formula still require separate proofs.
 \end{proof}
 
 \begin{proposition}[Three closed coefficient identities in the seed 5487 input]

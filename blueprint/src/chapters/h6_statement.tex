@@ -1564,7 +1564,7 @@ belong to the later proof.
 \begin{proposition}[The square-degree component has at most two elements]
   \label{prop:lin-square-component-two-elements}
   \lean{KIP126.LinE2.homogeneousPart_square_eq_span,KIP126.LinE2.E2At_square_eq_zero_or}
-  \uses{prop:lin-square-degree-unique}
+  \uses{prop:lin-square-degree-unique,lem:lin-singleton-exhaustion-transport}
   \leanok
   The actual homogeneous submodule of the archived quotient in bidegree
   $(2,128)$ is the $\mathbb F_2$-span of \texttt{dataH6Sq}. Consequently
@@ -1574,7 +1574,8 @@ belong to the later proof.
 \end{proposition}
 \begin{proof}
   Replace every monomial in the defining spanning set by the unique
-  monomial just proved. The two possible scalar coefficients are zero and one.
+  monomial just proved. The shared singleton-span exhaustion lemma uses the
+  two possible scalar coefficients, zero and one.
   \leanok
 \end{proof}
 
