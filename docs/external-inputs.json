@@ -1311,7 +1311,19 @@
               "KIP126.Computation.Secondary.Seed5487.row1572866_d_f",
               "KIP126.Computation.Secondary.Seed5487.row3145729_d_f"
             ],
-            "scope": "Native d/f columns and extracted auxiliary d_f/f_d/associator expressions. The three Lean statements check one d-squared column and two d(f) compositions at every rank-eight monomial. Row3145729 is a direct dependency of both native target lifts. They do not certify all 96 chain equations, the secondary associator formula, resolution exactness/minimality, or the actual sphere Adams d2."
+            "scope": "Native d/f columns and extracted auxiliary d_f/f_d/associator expressions. The three Lean statements check one d-squared column and two d(f) compositions at every rank-eight monomial. Row3145729 is a direct dependency of both native target lifts. They do not certify all 96 chain equations, the secondary associator formula, resolution exactness/minimality, or the actual sphere Adams d2.",
+            "fixed_rebuild_databases": [
+              {
+                "path": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+                "sha256": "808235c2575ca647100975c5bab4a577bd0aa2c718dbbf1521ff60e1ddc3b1ba",
+                "size": 225280
+              },
+              {
+                "path": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_d2.db",
+                "sha256": "b97e88747fbbd348961282afd46780a05062d9501c98d6def79efed79176570b",
+                "size": 69632
+              }
+            ]
           }
         },
         {
@@ -1571,6 +1583,36 @@
             "actual_model_comparison_certified": false,
             "scope": "Complete original native graph. Empty strings retain recorded zero; missing/NULL/unknown images are not defaulted. No quotient descent, graded map or actual spectrum-map comparison is certified."
           }
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "808235c2575ca647100975c5bab4a577bd0aa2c718dbbf1521ff60e1ddc3b1ba",
+          "size": 225280,
+          "reproduction": {
+            "source_archive": "Source/LWXMachine/source-code.zip",
+            "source_archive_sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+            "existing_extraction_and_rebuild_record": "docs/audits/issue152/seed5487-next.json",
+            "native_command": "Adams res S0 45"
+          },
+          "notes": "Exact previously audited local output of the unmodified published Adams program, retained so the fixed-byte certificate replay does not depend on /tmp. These are generated resolution/lift data, not a published database or an actual sphere Adams differential proof. Fresh program runs may differ in timestamp bytes; their semantic comparison remains a separate check.",
+          "storage": "git-lfs"
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_d2.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "b97e88747fbbd348961282afd46780a05062d9501c98d6def79efed79176570b",
+          "size": 69632,
+          "reproduction": {
+            "source_archive": "Source/LWXMachine/source-code.zip",
+            "source_archive_sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+            "existing_extraction_and_rebuild_record": "docs/audits/issue152/seed5487-next.json",
+            "native_command": "Adams d2 S0 45"
+          },
+          "notes": "Exact previously audited local output of the unmodified published Adams program, retained so the fixed-byte certificate replay does not depend on /tmp. These are generated resolution/lift data, not a published database or an actual sphere Adams differential proof. Fresh program runs may differ in timestamp bytes; their semantic comparison remains a separate check.",
+          "storage": "git-lfs"
         }
       ]
     },

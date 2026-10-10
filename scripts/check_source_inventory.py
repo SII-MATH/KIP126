@@ -606,6 +606,8 @@ class InventoryValidator:
             # resolved-directory checks stay in force.
             if source.get("id") == "lwx_machine" and artifact_kind == "machine_artifact" and path_value in {
                 "KIP126/LinProgram/Raw/ss.json",
+                "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+                "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_d2.db",
                 "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
                 "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
                 "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
@@ -671,6 +673,8 @@ class InventoryValidator:
             registered_lin_database = (
                 source.get("id") == "lwx_machine" and artifact_kind == "machine_artifact" and
                 path_value in {
+                    "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+                    "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_d2.db",
                     "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
                     "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
                     "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
