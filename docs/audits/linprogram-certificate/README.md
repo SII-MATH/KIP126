@@ -517,6 +517,24 @@ lake build KIP126.Checks.AdamsE2.LinCWMapGrading
 
 正式定向构建1709 jobs与联合根库构建4932 jobs均通过。34项声明的传递公理检查仅含标准逻辑三项，并检查完整目标有限项证书仍调用原模块检查器的可靠性定理。来源清单26 sources / 119 artifacts、来源/接口Lean核验、18项布局测试、15项Blueprint测试、700个活动节点的依赖检查、Blueprint web、全部声明链接与diff检查均通过。完整源关系消失和实际模型比较仍未标为已认证。
 
+## 完整原生商映射的独立重放工具
+
+`KIP126/LinProgram/Translate/module-map-certificates/` 直接从既有固定原始输入重建辅助理想组合见证并生成完整证书，不读取早期临时审计文件。Ceta 保留全部887项官方图与76569条源关系，CW 保留全部844项官方图、69263条源关系及原887生成元的完整 Ceta 目标；系数仍是原完整球面商。
+
+```sh
+python3 KIP126/LinProgram/Translate/module-map-certificates/replay-ceta.py --output-dir /tmp/kip126-native-ceta-replay --jobs 2
+python3 KIP126/LinProgram/Translate/module-map-certificates/replay-cw.py --output-dir /tmp/kip126-native-cw-replay --jobs 2
+python3 -B -m unittest discover -s KIP126/LinProgram/Translate/module-map-certificates -p 'test_*.py'
+```
+
+各入口支持 `--prepare-only` 和 `--check`；仅准备/比对生成数据不会运行 Lean，也不会升级认证状态。完整生成目标分别是 `KIP126.LinModule.CetaToSphere.all_relations_zero` 和 `KIP126.LinModule.CWToCeta.all_relations_zero`，随后构造原商上的 `nativeMap`、所有原生成元/单项式的作用定律及唯一性。最终导入/公理审计允许标准逻辑三项，拒绝实际模型和总交付依赖。
+
+便携计划生成266个 Ceta 模块和434个 CW 模块；比早期267/437模块计划少的部分仅是复用仓库中逐字节一致的 Support、ModuleSupport、ModuleTerms，所有其余数学源字节与原计划一致，没有省略关系。独立见证重建、两张真实完整计划检查和75项工具回归测试均通过；本节不将这些生成检查报告为完整 Lean 证书已完成。
+
+执行器在运行前与最终完成前，用同包生成器重新核实完整清单和全部生成源码，并核对固定 schema、每个原始关系块、最终定理及审计的完整依赖闭包。空计划、仅预检计划或部分目标不能产生完整认证标志。生成器、重建器、入口和实际调用的翻译辅助源均记录哈希；独占锁阻止运行期间重写输入。编译器、传递依赖产物与生成源码固定到核验过的隔离快照，每个成功收据须通过执行后的全输入检查；预检产物不能自动采用。
+
+只有全部原生关系、完整商映射及最终审计实际通过，才可将 `complete_native_quotient_map_certified` 置为真。`actual_spectrum_map_comparison_certified` 始终为假，直至另行完成实际模型比较；当前两项全量 Lean 运行仍未报告完成。旧 Ceta 运行使用已固定的原计划，最终结果还须独立检查全关系定理和审计，不能仅凭旧执行器的完成标志认定。
+
 ## 后续依赖与实际接入边界
 
 | 目标 | 精确剩余义务 | 可复用模块 |
