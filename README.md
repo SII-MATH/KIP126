@@ -1,5 +1,20 @@
 # KIP126
 
+## Optional Mathlib adapter
+
+This repository maintains `KIP126/Mathlib/`, including the SSData page and
+differential adapter, the all-page Adams tower comparison, and the comparison
+of nonzero survival predicates.
+[Kervaire126](https://github.com/SII-MATH/Kervaire126) maintains the internal
+formalization and no longer carries this optional layer.
+
+The adapter retains its existing mathematical declarations and hypotheses.
+Self-contained adapter modules use Lean's explicit module exports; modules
+depending on the legacy KIP126 core retain the compatible legacy format.
+These comparisons do not complete the fixed foundation, computation delivery,
+or final survival proof. `KIP126.Checks.SpectralSequence.SSDataAdapter` audits
+the generic adapter's independence from those project inputs.
+
 ## Dependencies
 
 **Fixed Lean toolchain: `leanprover/lean4:v4.32.2`.** Both the canonical
